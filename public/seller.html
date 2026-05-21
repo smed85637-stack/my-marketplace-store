@@ -44,6 +44,8 @@
     <h2>إضافة / تعديل منتج</h2>
     <form onsubmit="saveProduct(event)" class="form">
       <input type="hidden" id="productId">
+      <input type="hidden" id="productImageUrl">
+<input type="hidden" id="productImagesJson">
       <div class="field"><label>اسم المنتج</label><input id="productName" required></div>
       <div class="field"><label>السعر</label><input id="productPrice" type="number" min="0" step="0.01" required></div>
       <div class="field"><label>العملة</label><input id="productCurrency" value="MRU"></div>
