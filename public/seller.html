@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>لوحة البائع</title><link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadSellerDashboard()">
+<header><div class="container nav">
+  <div class="brand"><div class="logo">🏪</div><div>لوحة البائع<br><small style="color:var(--muted)">إضافة المنتجات وإدارة الطلبات</small></div></div>
+  <nav class="menu"><a class="btn soft" href="index.html">المتجر</a><button class="btn danger" onclick="logoutSeller()">خروج</button></nav>
+</div></header>
+
+<main class="container" style="padding:30px 0">
+<div class="hero" style="padding-top:0">
+  <div class="card">
+    <h1 style="font-size:2.2rem">إنشاء حساب بائع</h1>
+    <form onsubmit="registerSeller(event)" class="form">
+      <div class="field"><label>اسم المتجر</label><input id="storeName" required></div>
+      <div class="field"><label>اسم صاحب المتجر</label><input id="ownerName"></div>
+      <div class="field"><label>رقم الهاتف / واتساب</label><input id="sellerPhone" required></div>
+      <div class="field"><label>المدينة</label><input id="sellerCity"></div>
+      <div class="full"><button class="btn primary" type="submit">إنشاء حساب</button></div>
+    </form>
+    <div class="form" style="margin-top:12px">
+      <div class="field"><label>Seller ID</label><input id="sellerIdBox" readonly></div>
+      <div class="field"><label>Seller Token</label><input id="sellerTokenBox" readonly></div>
+    </div>
+    <p>احتفظ بهذه البيانات، فهي مثل كلمة السر للبائع.</p>
+  </div>
+
+  <div class="card">
+    <h2>دخول بائع موجود</h2>
+    <form onsubmit="loginSeller(event)" class="form">
+      <div class="field full"><label>Seller ID</label><input id="loginSellerId" required></div>
+      <div class="field full"><label>Seller Token</label><input id="loginSellerToken" required></div>
+      <div class="full"><button class="btn dark" type="submit">دخول</button></div>
+    </form>
+    <p id="sellerHint">بعد الدخول ستظهر لوحة إضافة المنتجات والطلبات.</p>
+  </div>
+</div>
+
+<section id="sellerPanel" style="display:none">
+  <div class="card">
+    <h2>إضافة / تعديل منتج</h2>
+    <form onsubmit="saveProduct(event)" class="form">
+      <input type="hidden" id="productId">
+      <div class="field"><label>اسم المنتج</label><input id="productName" required></div>
+      <div class="field"><label>السعر</label><input id="productPrice" type="number" min="0" step="0.01" required></div>
+      <div class="field"><label>العملة</label><input id="productCurrency" value="MRU"></div>
+      <div class="field"><label>التصنيف</label><input id="productCategory"></div>
+      <div class="field"><label>رابط الصورة</label><input id="productImage"></div>
+      <div class="field"><label>الحالة</label><select id="productStatus"><option value="active">ظاهر</option><option value="hidden">مخفي</option></select></div>
+      <div class="field full"><label>الوصف</label><textarea id="productDesc"></textarea></div>
+      <div class="full"><button class="btn green" type="submit">حفظ المنتج</button></div>
+    </form>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>منتجاتي</h2>
+    <table class="table"><thead><tr><th>المنتج</th><th>السعر</th><th>الحالة</th><th>تحكم</th></tr></thead><tbody id="sellerProducts"></tbody></table>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h2>طلباتي</h2>
+    <p>عند إتمام البيع اضغط "مكتمل" حتى تظهر عمولة 2% في لوحة المدير.</p>
+    <table class="table"><thead><tr><th>المنتج</th><th>الزبون</th><th>المبلغ</th><th>الحالة</th><th>تحكم</th></tr></thead><tbody id="sellerOrders"></tbody></table>
+  </div>
+</section>
+</main>
+
+<div class="toast" id="toast"></div><script src="app.js"></script>
+</body>
+</html>
