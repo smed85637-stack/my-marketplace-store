@@ -53,7 +53,11 @@ async function loadProducts(){
   try{
     $('productsGrid').innerHTML = `<div class="empty">جاري تحميل المنتجات...</div>`;
     const data = await req('/products');
-    productsCache = data.products || [];
+
+    productsCache = (data.products || []).filter(p => {
+      return !p.status || p.status === 'active';
+    });
+
     renderProducts();
   }catch(e){
     $('productsGrid').innerHTML = `<div class="empty">خطأ: ${esc(e.message)}</div>`;
@@ -403,14 +407,20 @@ async function loadAdmin(){
         <div class="stat"><b>${s.sellers_count||0}</b><span>بائعين</span></div>
         <div class="stat"><b>${s.products_count||0}</b><span>منتجات</span></div>
         <div class="stat"><b>${s.orders_count||0}</b><span>طلبات</span></div>
-        <div class="stat"><b>${money(s.total_commission,'')}</b><span>عمولتك من المكتمل</span></div>
+        <div class="stat"><b>${s.completed_orders_count||0}</b><span>طلبات مكتملة</span></div>
       </div>
 
       <div class="card">
         <h2>الطلبات</h2>
         <table class="table">
           <thead>
-            <tr><th>المنتج</th><th>البائع</th><th>الزبون</th><th>المبلغ</th><th>العمولة</th><th>الحالة</th></tr>
+            <tr>
+              <th>المنتج</th>
+              <th>البائع</th>
+              <th>الزبون</th>
+              <th>المبلغ</th>
+              <th>الحالة</th>
+            </tr>
           </thead>
           <tbody>
             ${(data.orders||[]).map(o=>`
@@ -419,10 +429,9 @@ async function loadAdmin(){
                 <td>${esc(o.sellers?.store_name||'')}</td>
                 <td>${esc(o.buyer_name)}<br><small>${esc(o.buyer_phone)}</small></td>
                 <td>${money(o.total_amount,o.products?.currency)}</td>
-                <td>${money(o.commission_amount,o.products?.currency)}</td>
                 <td><span class="status ${esc(o.status)}">${esc(o.status)}</span></td>
               </tr>
-            `).join('')||'<tr><td colspan="6">لا توجد طلبات</td></tr>'}
+            `).join('')||'<tr><td colspan="5">لا توجد طلبات</td></tr>'}
           </tbody>
         </table>
       </div>
@@ -431,7 +440,13 @@ async function loadAdmin(){
         <h2>البائعون</h2>
         <table class="table">
           <thead>
-            <tr><th>المتجر</th><th>الهاتف</th><th>المدينة</th><th>الحالة</th><th>تحكم</th></tr>
+            <tr>
+              <th>المتجر</th>
+              <th>الهاتف</th>
+              <th>المدينة</th>
+              <th>الحالة</th>
+              <th>تحكم</th>
+            </tr>
           </thead>
           <tbody>
             ${(data.sellers||[]).map(s=>`
@@ -455,7 +470,13 @@ async function loadAdmin(){
         <h2>المنتجات</h2>
         <table class="table">
           <thead>
-            <tr><th>المنتج</th><th>البائع</th><th>السعر</th><th>الحالة</th><th>تحكم</th></tr>
+            <tr>
+              <th>المنتج</th>
+              <th>البائع</th>
+              <th>السعر</th>
+              <th>الحالة</th>
+              <th>تحكم</th>
+            </tr>
           </thead>
           <tbody>
             ${(data.products||[]).map(p=>`
@@ -463,11 +484,23 @@ async function loadAdmin(){
                 <td>${esc(p.name)}</td>
                 <td>${esc(p.sellers?.store_name||'')}</td>
                 <td>${money(p.price,p.currency)}</td>
-                <td><span class="status ${esc(p.status)}">${esc(p.status)}</span></td>
+                <td><span class="status ${esc(p.status || 'active')}">${esc(p.status || 'active')}</span></td>
                 <td>
-                  <button class="btn soft" onclick="productStatus('${p.id}','${p.status==='active'?'hidden':'active'}')">
-                    ${p.status==='active'?'إخفاء':'إظهار'}
-                  </button>
+                  <div class="admin-actions">
+                    ${p.status !== 'active' ? `
+                      <button class="mini-btn mini-success" onclick="productStatus('${p.id}','active')">إظهار</button>
+                    ` : ''}
+
+                    ${p.status !== 'hidden' ? `
+                      <button class="mini-btn mini-warning" onclick="productStatus('${p.id}','hidden')">إخفاء</button>
+                    ` : ''}
+
+                    ${p.status !== 'blocked' ? `
+                      <button class="mini-btn mini-danger" onclick="productStatus('${p.id}','blocked')">حظر</button>
+                    ` : ''}
+
+                    <button class="mini-btn mini-danger" onclick="productStatus('${p.id}','deleted')">حذف</button>
+                  </div>
                 </td>
               </tr>
             `).join('')||'<tr><td colspan="5">لا توجد منتجات</td></tr>'}
@@ -495,11 +528,21 @@ async function sellerStatus(id,status){
 
 async function productStatus(id,status){
   try{
+    if(status === 'deleted'){
+      if(!confirm('هل تريد حذف هذا المنتج من المتجر؟')) return;
+    }
+
+    if(status === 'blocked'){
+      if(!confirm('هل تريد حظر هذا المنتج من المتجر؟')) return;
+    }
+
     await req('/admin',{
       method:'PUT',
       headers:{'x-admin-token':adminToken()},
       body:JSON.stringify({type:'product_status',id,status})
     });
+
+    toast('تم تحديث المنتج');
     loadAdmin();
   }catch(e){
     toast(e.message);
