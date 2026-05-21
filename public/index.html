@@ -1,52 +1,121 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>السوق الإلكتروني</title><link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>السوق الإلكتروني</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body onload="loadProducts()">
-<header><div class="container nav">
-  <div class="brand"><div class="logo">🛒</div><div>السوق الإلكتروني<br><small style="color:var(--muted)">منصة بائعين متعددة</small></div></div>
-  <nav class="menu"><a class="btn soft" href="seller.html">دخول البائع</a><a class="btn dark" href="admin.html">لوحة المدير</a></nav>
-</div></header>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo">🛒</div>
+      <div>
+        السوق الإلكتروني<br>
+        <small style="color:var(--muted)">منصة بائعين متعددة</small>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a class="btn soft" href="seller.html">دخول البائع</a>
+      <a class="btn dark" href="admin.html">لوحة المدير</a>
+    </nav>
+  </div>
+</header>
 
 <main class="container">
-<section class="hero">
-  <div class="card">
-<span class="pill">منصة بائعين متعددة</span> 
-<h1>منصة لعرض المنتجات والتواصل مع البائعين</h1>
-    <p>البائع يضيف المنتجات والسعر ورقم الهاتف، والزبون يطلب المنتج ويتواصل مع البائع. عند إتمام البيع تُحسب عمولة المنصة تلقائيًا بنسبة 2%.</p>
-    <a class="btn primary" href="#products">تصفح المنتجات</a>
-    <a class="btn green" href="seller.html">ابدأ كبائع</a>
-  </div>
-  <div class="hero-art"><div class="glass"><h2>نظام عمولة 2%</h2><p style="color:#e5e7eb">كل طلب يسجل داخل API، وعند تحويله إلى مكتمل تظهر عمولتك في لوحة المدير.</p></div></div>
-</section>
 
-<section id="products">
-  <div class="toolbar">
-    <div><h2>المنتجات المتاحة</h2><p>اطلب المنتج أو تواصل مع البائع مباشرة.</p></div>
-    <div class="search">🔎 <input id="searchInput" oninput="renderProducts()" placeholder="ابحث عن منتج أو بائع"></div>
-  </div>
-  <div class="grid" id="productsGrid"></div>
-</section>
+  <section class="hero small-hero">
+    <div class="card">
+      <span class="pill">منصة بائعين متعددة</span>
+
+      <h1>منصة لعرض المنتجات والتواصل مع البائعين</h1>
+
+      <a class="btn primary" href="#products">تصفح المنتجات</a>
+      <a class="btn green" href="seller.html">تاجر جديد</a>
+    </div>
+
+    <div class="hero-art">
+      <div class="glass">
+        <h2>إدارة سهلة</h2>
+        <p style="color:#e5e7eb">
+          أضف منتجاتك بسهولة، وتابع الطلبات والتواصل مع الزبائن من مكان واحد.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="toolbar">
+      <div>
+        <h2>المنتجات المتاحة</h2>
+        <p>اطلب المنتج أو تواصل مع البائع مباشرة.</p>
+      </div>
+
+      <div class="search">
+        🔎
+        <input id="searchInput" oninput="renderProducts()" placeholder="ابحث عن منتج أو بائع">
+      </div>
+    </div>
+
+    <div class="grid" id="productsGrid"></div>
+  </section>
+
 </main>
 
 <div class="modal" id="orderModal">
   <div class="modal-card">
-    <div class="topline"><h2>إرسال طلب</h2><button class="x" onclick="closeOrder()">×</button></div>
+    <div class="topline">
+      <h2>إرسال طلب</h2>
+      <button class="x" onclick="closeOrder()">×</button>
+    </div>
+
     <p id="orderProductName"></p>
+
     <form onsubmit="submitOrder(event)" class="form">
       <input type="hidden" id="orderProductId">
-      <div class="field"><label>اسم الزبون</label><input id="buyerName" required></div>
-      <div class="field"><label>رقم الهاتف</label><input id="buyerPhone" required></div>
-      <div class="field"><label>الكمية</label><input id="buyerQty" type="number" min="1" value="1" required></div>
-      <div class="field full"><label>ملاحظات</label><textarea id="buyerNotes"></textarea></div>
-      <div class="full"><button class="btn primary" type="submit">تسجيل الطلب والتواصل مع البائع</button></div>
+
+      <div class="field">
+        <label>اسم الزبون</label>
+        <input id="buyerName" required>
+      </div>
+
+      <div class="field">
+        <label>رقم الهاتف</label>
+        <input id="buyerPhone" required>
+      </div>
+
+      <div class="field">
+        <label>الكمية</label>
+        <input id="buyerQty" type="number" min="1" value="1" required>
+      </div>
+
+      <div class="field full">
+        <label>ملاحظات</label>
+        <textarea id="buyerNotes"></textarea>
+      </div>
+
+      <div class="full">
+        <button class="btn primary" type="submit">
+          تسجيل الطلب والتواصل مع البائع
+        </button>
+      </div>
     </form>
   </div>
 </div>
 
-<footer><div class="container"><b>السوق الإلكتروني</b><p>منصة تجريبية جاهزة للربط مع API وبوابة دفع لاحقًا.</p></div></footer>
-<div class="toast" id="toast"></div><script src="app.js"></script>
+<footer>
+  <div class="container">
+    <b>السوق الإلكتروني</b>
+    <p>منصة تجريبية لعرض المنتجات والتواصل مع البائعين.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+
 </body>
 </html>
