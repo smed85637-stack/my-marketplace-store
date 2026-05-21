@@ -1,19 +1,31 @@
-
 const { corsHeaders, json, supabase, adminOk, readBody } = require('./_supabase');
 
 exports.handler = async (event) => {
-  if (event.httpMethod === 'OPTIONS') return { statusCode: 204, headers: corsHeaders, body: '' };
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 204, headers: corsHeaders, body: '' };
+  }
 
   try {
-    if (!adminOk(event)) return json(401, { error: 'رمز المدير غير صحيح' });
+    if (!adminOk(event)) {
+      return json(401, { error: 'رمز المدير غير صحيح' });
+    }
 
     const sb = supabase();
 
     if (event.httpMethod === 'GET') {
       const [sellersRes, productsRes, ordersRes] = await Promise.all([
-        sb.from('sellers').select('*').order('created_at', { ascending: false }),
-        sb.from('products').select('*, sellers(store_name, phone)').order('created_at', { ascending: false }),
-        sb.from('orders').select('*, products(name, currency), sellers(store_name, phone)').order('created_at', { ascending: false })
+        sb.from('sellers')
+          .select('*')
+          .order('created_at', { ascending: false }),
+
+        sb.from('products')
+          .select('*, sellers(store_name, phone)')
+          .neq('status', 'deleted')
+          .order('created_at', { ascending: false }),
+
+        sb.from('orders')
+          .select('*, products(name, currency), sellers(store_name, phone)')
+          .order('created_at', { ascending: false })
       ]);
 
       if (sellersRes.error) return json(500, { error: sellersRes.error.message });
@@ -22,8 +34,14 @@ exports.handler = async (event) => {
 
       const orders = ordersRes.data || [];
       const completed = orders.filter(o => o.status === 'completed');
-      const totalSales = completed.reduce((s, o) => s + Number(o.total_amount || 0), 0);
-      const totalCommission = completed.reduce((s, o) => s + Number(o.commission_amount || 0), 0);
+
+      const totalSales = completed.reduce((s, o) => {
+        return s + Number(o.total_amount || 0);
+      }, 0);
+
+      const totalCommission = completed.reduce((s, o) => {
+        return s + Number(o.commission_amount || 0);
+      }, 0);
 
       return json(200, {
         sellers: sellersRes.data || [],
@@ -42,25 +60,33 @@ exports.handler = async (event) => {
 
     if (event.httpMethod === 'PUT') {
       const body = readBody(event);
+
       if (body.type === 'seller_status') {
+        const status = body.status === 'blocked' ? 'blocked' : 'active';
+
         const { data, error } = await sb.from('sellers')
-          .update({ status: body.status === 'blocked' ? 'blocked' : 'active' })
+          .update({ status })
           .eq('id', body.id)
           .select()
           .single();
+
         if (error) return json(500, { error: error.message });
+
         return json(200, { seller: data });
       }
 
       if (body.type === 'product_status') {
-        const allowed = ['active', 'hidden', 'deleted'];
+        const allowed = ['active', 'hidden', 'blocked', 'deleted'];
         const status = allowed.includes(body.status) ? body.status : 'active';
+
         const { data, error } = await sb.from('products')
           .update({ status })
           .eq('id', body.id)
           .select()
           .single();
+
         if (error) return json(500, { error: error.message });
+
         return json(200, { product: data });
       }
 
@@ -68,6 +94,7 @@ exports.handler = async (event) => {
     }
 
     return json(405, { error: 'Method not allowed' });
+
   } catch (e) {
     return json(500, { error: e.message });
   }
