@@ -48,8 +48,9 @@ exports.handler = async (event) => {
         description: String(body.description || '').trim(),
         price: Number(body.price || 0),
         currency: String(body.currency || 'MRU').trim(),
-        image_url: String(body.image_url || '').trim(),
-        category: String(body.category || '').trim(),
+      image_url: String(body.image_url || '').trim(),
+images: Array.isArray(body.images) ? body.images : [],
+category: String(body.category || '').trim(),
         status: String(body.status || 'active')
       };
 
