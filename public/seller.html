@@ -48,15 +48,16 @@
       <div class="field"><label>السعر</label><input id="productPrice" type="number" min="0" step="0.01" required></div>
       <div class="field"><label>العملة</label><input id="productCurrency" value="MRU"></div>
       <div class="field"><label>التصنيف</label><input id="productCategory"></div>
-<label>صور المنتج</label>
-<input 
-  type="file" 
-  id="productImages" 
-  accept="image/*" 
-  multiple
->
-
-<div id="imagePreview" class="image-preview"></div>
+<div class="field full">
+  <label>صور المنتج</label>
+  <input 
+    type="file" 
+    id="productImages" 
+    accept="image/*" 
+    multiple
+  >
+  <div id="imagePreview" class="image-preview"></div>
+</div>
       <div class="field full"><label>الوصف</label><textarea id="productDesc"></textarea></div>
       <div class="full"><button class="btn green" type="submit">حفظ المنتج</button></div>
     </form>
