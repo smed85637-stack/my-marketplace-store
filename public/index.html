@@ -2,120 +2,102 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>السوق الإلكتروني</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>متجر التقنية والجمال</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body onload="loadProducts()">
 
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <div class="logo">🛒</div>
+  <header class="shop-header">
+    <div class="shop-logo">
+      <div class="logo-icon">🛒</div>
       <div>
-        السوق الإلكتروني<br>
-        <small style="color:var(--muted)">منصة بائعين متعددة</small>
+        <h1>متجر التقنية والجمال</h1>
+        <p>متجر التقنية والجمال</p>
       </div>
     </div>
 
-    <nav class="menu">
-      <a class="btn soft" href="seller.html">دخول البائع</a>
-      <a class="btn dark" href="admin.html">لوحة المدير</a>
+    <nav class="shop-nav">
+      <a href="index.html" class="active">الرئيسية</a>
+      <a href="#products-section">أحدث المنتجات</a>
+      <a href="#categories">أقسام المتجر</a>
+      <a href="seller.html">دخول البائع</a>
+      <a href="admin.html">لوحة المدير</a>
     </nav>
-  </div>
-</header>
 
-<main class="container">
-
-  <section class="hero small-hero">
-    <div class="card">
-      <span class="pill">منصة بائعين متعددة</span>
-
-      <h1>منصة لعرض المنتجات والتواصل مع البائعين</h1>
-
-      <a class="btn primary" href="#products">تصفح المنتجات</a>
-      <a class="btn green" href="seller.html">تاجر جديد</a>
+    <div class="shop-search">
+      <input id="searchInput" type="text" placeholder="ابحث">
     </div>
+  </header>
 
-    <div class="hero-art">
-      <div class="glass">
-        <h2>إدارة سهلة</h2>
-        <p style="color:#e5e7eb">
-          أضف منتجاتك بسهولة، وتابع الطلبات والتواصل مع الزبائن من مكان واحد.
-        </p>
+  <section class="hero-store">
+    <div class="hero-content">
+      <h2>اكتشف عالم التقنية والأسلوب!</h2>
+      <p>تسوق الآن أحدث الإلكترونيات والمنتجات العصرية</p>
+      <a href="#products-section" class="hero-btn">إبدأ التسوق</a>
+    </div>
+  </section>
+
+  <section id="categories" class="categories-section">
+    <h2>الأقسام المميزة</h2>
+
+    <div class="categories-row">
+      <div class="category-item">
+        <div class="category-icon">🖥️</div>
+        <span>إلكترونيات</span>
+      </div>
+
+      <div class="category-item">
+        <div class="category-icon">🏠</div>
+        <span>أجهزة منزلية</span>
+      </div>
+
+      <div class="category-item">
+        <div class="category-icon">⚽</div>
+        <span>أدوات رياضية</span>
+      </div>
+
+      <div class="category-item">
+        <div class="category-icon">💄</div>
+        <span>مستحضرات تجميل</span>
+      </div>
+
+      <div class="category-item">
+        <div class="category-icon">🛋️</div>
+        <span>أثاث وديكور</span>
       </div>
     </div>
   </section>
 
-  <section id="products">
-    <div class="toolbar">
-      <div>
-        <h2>المنتجات المتاحة</h2>
-        <p>اطلب المنتج أو تواصل مع البائع مباشرة.</p>
-      </div>
+  <section id="products-section" class="products-section">
+    <h2>المنتجات الأكثر مبيعاً</h2>
 
-      <div class="search">
-        🔎
-        <input id="searchInput" oninput="renderProducts()" placeholder="ابحث عن منتج أو بائع">
-      </div>
+    <div id="products" class="products-grid">
+      <!-- المنتجات تظهر هنا من app.js -->
     </div>
-
-    <div class="grid" id="productsGrid"></div>
   </section>
 
-</main>
-
-<div class="modal" id="orderModal">
-  <div class="modal-card">
-    <div class="topline">
-      <h2>إرسال طلب</h2>
-      <button class="x" onclick="closeOrder()">×</button>
+  <footer class="shop-footer">
+    <div>
+      <h3>تواصل معنا</h3>
+      <p>info@store.com</p>
+      <p>+222 00000000</p>
     </div>
 
-    <p id="orderProductName"></p>
+    <div>
+      <h3>خدمة العملاء</h3>
+      <p>تتبع الطلب</p>
+      <p>سياسة المتجر</p>
+    </div>
 
-    <form onsubmit="submitOrder(event)" class="form">
-      <input type="hidden" id="orderProductId">
+    <div>
+      <h3>شروط الاستخدام</h3>
+      <p>شروط الاستخدام</p>
+      <p>سياسة الخصوصية</p>
+    </div>
+  </footer>
 
-      <div class="field">
-        <label>اسم الزبون</label>
-        <input id="buyerName" required>
-      </div>
-
-      <div class="field">
-        <label>رقم الهاتف</label>
-        <input id="buyerPhone" required>
-      </div>
-
-      <div class="field">
-        <label>الكمية</label>
-        <input id="buyerQty" type="number" min="1" value="1" required>
-      </div>
-
-      <div class="field full">
-        <label>ملاحظات</label>
-        <textarea id="buyerNotes"></textarea>
-      </div>
-
-      <div class="full">
-        <button class="btn primary" type="submit">
-          تسجيل الطلب والتواصل مع البائع
-        </button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<footer>
-  <div class="container">
-    <b>السوق الإلكتروني</b>
-    <p>منصة تجريبية لعرض المنتجات والتواصل مع البائعين.</p>
-  </div>
-</footer>
-
-<div class="toast" id="toast"></div>
-<script src="app.js"></script>
-
+  <script src="app.js"></script>
 </body>
 </html>
