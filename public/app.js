@@ -66,8 +66,7 @@ async function loadProducts(){
 function renderProducts(){
   const q = ($('searchInput')?.value || '').trim().toLowerCase();
 let items = productsCache.filter(p =>
-  [p.name,p.category,p.description,p.sellers?.store_name].join(' ').toLowerCase().includes(q)
-);
+ 
 
 if(selectedCategory !== 'الكل'){
   items = items.filter(p => (p.category || 'أخرى') === selectedCategory);
