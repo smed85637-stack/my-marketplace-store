@@ -48,7 +48,7 @@ function productMainImage(p){
 
 // الصفحة الرئيسية
 let productsCache = [];
-
+let selectedCategory = 'الكل';
 async function loadProducts(){
   try{
     $('productsGrid').innerHTML = `<div class="empty">جاري تحميل المنتجات...</div>`;
@@ -66,7 +66,13 @@ async function loadProducts(){
 
 function renderProducts(){
   const q = ($('searchInput')?.value || '').trim().toLowerCase();
-  const items = productsCache.filter(p =>
+let items = productsCache.filter(p =>
+  [p.name,p.category,p.description,p.sellers?.store_name].join(' ').toLowerCase().includes(q)
+);
+
+if(selectedCategory !== 'الكل'){
+  items = items.filter(p => (p.category || 'أخرى') === selectedCategory);
+}
     [p.name,p.category,p.description,p.sellers?.store_name].join(' ').toLowerCase().includes(q)
   );
 
@@ -92,7 +98,10 @@ function renderProducts(){
     </article>
   `).join('');
 }
-
+function filterCategory(category){
+  selectedCategory = category;
+  renderProducts();
+}
 function contactSeller(id){
   const p = productsCache.find(x=>x.id===id);
   const phone = String(p?.sellers?.phone||'').replace(/[^\d]/g,'');
