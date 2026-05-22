@@ -594,5 +594,642 @@ footer p{
 
   .hero-art{
     min-height:205px;
+ }
+/* ===== تصميم واجهة المتجر الجديدة ===== */
+
+body{
+  margin:0 !important;
+  direction:rtl;
+  font-family: Arial, Tahoma, sans-serif !important;
+  background:#ffffff !important;
+  color:#111827 !important;
+}
+
+/* إخفاء النجوم نهائياً */
+.stars,
+.rating,
+.product-stars{
+  display:none !important;
+}
+
+/* الهيدر */
+.shop-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 42px;
+  background:#fff;
+  border-top:7px solid #061b33;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.shop-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:#061b33;
+  color:#d4b26a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.shop-logo h1{
+  margin:0;
+  font-size:22px;
+  color:#061b33;
+  font-weight:900;
+}
+
+.shop-logo p{
+  margin:2px 0 0;
+  font-size:12px;
+  color:#64748b;
+}
+
+.shop-nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.shop-nav a{
+  color:#111827;
+  text-decoration:none;
+  font-weight:800;
+  font-size:15px;
+}
+
+.shop-nav a.active{
+  color:#d4b26a;
+}
+
+.shop-search input{
+  width:230px;
+  padding:10px 14px;
+  border:1px solid #d7dce3;
+  border-radius:9px;
+  outline:none;
+  background:#fff;
+}
+
+/* البانر الرئيسي */
+.hero-store{
+  min-height:330px;
+  background:
+    linear-gradient(90deg, rgba(6,27,51,.96), rgba(6,27,51,.73)),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:45px 75px;
+}
+
+.hero-content{
+  max-width:560px;
+  color:#fff;
+  text-align:right;
+}
+
+.hero-content h2{
+  font-size:38px;
+  margin:0 0 12px;
+  font-weight:900;
+  line-height:1.3;
+}
+
+.hero-content p{
+  font-size:20px;
+  margin:0 0 24px;
+  color:#e5e7eb;
+}
+
+.hero-btn{
+  display:inline-block;
+  background:#d4b26a;
+  color:#061b33;
+  padding:12px 30px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* الأقسام */
+.categories-section,
+.products-section{
+  max-width:1120px;
+  margin:45px auto;
+  padding:0 20px;
+  text-align:center;
+}
+
+.categories-section h2,
+.products-section h2{
+  font-size:30px;
+  color:#111827;
+  margin:0 0 28px;
+  font-weight:900;
+}
+
+.categories-row{
+  display:flex;
+  justify-content:center;
+  gap:44px;
+  flex-wrap:wrap;
+}
+
+.category-item{
+  text-align:center;
+  font-weight:900;
+  color:#111827;
+  min-width:110px;
+}
+
+.category-icon{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#061b33;
+  color:#d4b26a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  margin:0 auto 10px;
+  box-shadow:0 8px 18px rgba(6,27,51,.20);
+}
+
+.category-item span{
+  font-size:16px;
+  display:block;
+}
+
+/* المنتجات */
+.products-grid,
+#products{
+  display:grid !important;
+  grid-template-columns:repeat(4, 1fr);
+  gap:22px;
+}
+
+.product-card,
+.product{
+  background:#fff !important;
+  border:1px solid #e5e7eb !important;
+  border-radius:12px !important;
+  padding:14px !important;
+  box-shadow:0 4px 12px rgba(0,0,0,.05) !important;
+  text-align:center !important;
+  overflow:hidden;
+}
+
+.product-image,
+.product img,
+.product-card img{
+  width:100% !important;
+  height:170px !important;
+  object-fit:contain !important;
+  background:#f8fafc !important;
+  border-radius:10px !important;
+  margin-bottom:12px !important;
+}
+
+.product-title,
+.product h3,
+.product-card h3{
+  min-height:44px;
+  font-size:15px !important;
+  font-weight:900 !important;
+  line-height:1.4;
+  margin:8px 0 !important;
+  color:#111827 !important;
+}
+
+.product-price,
+.price{
+  font-size:17px !important;
+  font-weight:900 !important;
+  color:#111827 !important;
+  margin:8px 0 12px !important;
+}
+
+.add-cart-btn,
+.product button,
+.product-card button{
+  width:100% !important;
+  background:#061b33 !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:8px !important;
+  padding:11px !important;
+  font-weight:900 !important;
+  cursor:pointer !important;
+}
+
+/* الفوتر */
+.shop-footer{
+  background:#061b33;
+  color:#fff;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:36px 55px;
+  margin-top:50px;
+}
+
+.shop-footer h3{
+  color:#fff;
+  margin-top:0;
+  font-size:18px;
+}
+
+.shop-footer p{
+  color:#cbd5e1;
+  margin:8px 0;
+}
+
+/* الهاتف */
+@media(max-width:900px){
+  .shop-header{
+    flex-direction:column;
+    padding:16px;
   }
+
+  .shop-nav{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .shop-search input{
+    width:100%;
+  }
+
+  .hero-store{
+    padding:38px 24px;
+    min-height:300px;
+  }
+
+  .hero-content h2{
+    font-size:30px;
+  }
+
+  .products-grid,
+  #products{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+
+  .shop-footer{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+}
+
+@media(max-width:520px){
+  .products-grid,
+  #products{
+    grid-template-columns:1fr !important;
+  }
+
+  .category-icon{
+    width:76px;
+    height:76px;
+    font-size:28px;
+  }
+
+  .categories-row{
+    gap:24px;
+  }
+/* ===== تصميم واجهة المتجر الجديدة ===== */
+
+body{
+  margin:0 !important;
+  direction:rtl;
+  font-family: Arial, Tahoma, sans-serif !important;
+  background:#ffffff !important;
+  color:#111827 !important;
+}
+
+/* إخفاء النجوم نهائياً */
+.stars,
+.rating,
+.product-stars{
+  display:none !important;
+}
+
+/* الهيدر */
+.shop-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:14px 42px;
+  background:#fff;
+  border-top:7px solid #061b33;
+  box-shadow:0 2px 12px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.shop-logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:#061b33;
+  color:#d4b26a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+}
+
+.shop-logo h1{
+  margin:0;
+  font-size:22px;
+  color:#061b33;
+  font-weight:900;
+}
+
+.shop-logo p{
+  margin:2px 0 0;
+  font-size:12px;
+  color:#64748b;
+}
+
+.shop-nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.shop-nav a{
+  color:#111827;
+  text-decoration:none;
+  font-weight:800;
+  font-size:15px;
+}
+
+.shop-nav a.active{
+  color:#d4b26a;
+}
+
+.shop-search input{
+  width:230px;
+  padding:10px 14px;
+  border:1px solid #d7dce3;
+  border-radius:9px;
+  outline:none;
+  background:#fff;
+}
+
+/* البانر الرئيسي */
+.hero-store{
+  min-height:330px;
+  background:
+    linear-gradient(90deg, rgba(6,27,51,.96), rgba(6,27,51,.73)),
+    url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400&auto=format&fit=crop");
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  padding:45px 75px;
+}
+
+.hero-content{
+  max-width:560px;
+  color:#fff;
+  text-align:right;
+}
+
+.hero-content h2{
+  font-size:38px;
+  margin:0 0 12px;
+  font-weight:900;
+  line-height:1.3;
+}
+
+.hero-content p{
+  font-size:20px;
+  margin:0 0 24px;
+  color:#e5e7eb;
+}
+
+.hero-btn{
+  display:inline-block;
+  background:#d4b26a;
+  color:#061b33;
+  padding:12px 30px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:900;
+}
+
+/* الأقسام */
+.categories-section,
+.products-section{
+  max-width:1120px;
+  margin:45px auto;
+  padding:0 20px;
+  text-align:center;
+}
+
+.categories-section h2,
+.products-section h2{
+  font-size:30px;
+  color:#111827;
+  margin:0 0 28px;
+  font-weight:900;
+}
+
+.categories-row{
+  display:flex;
+  justify-content:center;
+  gap:44px;
+  flex-wrap:wrap;
+}
+
+.category-item{
+  text-align:center;
+  font-weight:900;
+  color:#111827;
+  min-width:110px;
+}
+
+.category-icon{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:#061b33;
+  color:#d4b26a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  margin:0 auto 10px;
+  box-shadow:0 8px 18px rgba(6,27,51,.20);
+}
+
+.category-item span{
+  font-size:16px;
+  display:block;
+}
+
+/* المنتجات */
+.products-grid,
+#products{
+  display:grid !important;
+  grid-template-columns:repeat(4, 1fr);
+  gap:22px;
+}
+
+.product-card,
+.product{
+  background:#fff !important;
+  border:1px solid #e5e7eb !important;
+  border-radius:12px !important;
+  padding:14px !important;
+  box-shadow:0 4px 12px rgba(0,0,0,.05) !important;
+  text-align:center !important;
+  overflow:hidden;
+}
+
+.product-image,
+.product img,
+.product-card img{
+  width:100% !important;
+  height:170px !important;
+  object-fit:contain !important;
+  background:#f8fafc !important;
+  border-radius:10px !important;
+  margin-bottom:12px !important;
+}
+
+.product-title,
+.product h3,
+.product-card h3{
+  min-height:44px;
+  font-size:15px !important;
+  font-weight:900 !important;
+  line-height:1.4;
+  margin:8px 0 !important;
+  color:#111827 !important;
+}
+
+.product-price,
+.price{
+  font-size:17px !important;
+  font-weight:900 !important;
+  color:#111827 !important;
+  margin:8px 0 12px !important;
+}
+
+.add-cart-btn,
+.product button,
+.product-card button{
+  width:100% !important;
+  background:#061b33 !important;
+  color:#fff !important;
+  border:none !important;
+  border-radius:8px !important;
+  padding:11px !important;
+  font-weight:900 !important;
+  cursor:pointer !important;
+}
+
+/* الفوتر */
+.shop-footer{
+  background:#061b33;
+  color:#fff;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:36px 55px;
+  margin-top:50px;
+}
+
+.shop-footer h3{
+  color:#fff;
+  margin-top:0;
+  font-size:18px;
+}
+
+.shop-footer p{
+  color:#cbd5e1;
+  margin:8px 0;
+}
+
+/* الهاتف */
+@media(max-width:900px){
+  .shop-header{
+    flex-direction:column;
+    padding:16px;
+  }
+
+  .shop-nav{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:14px;
+  }
+
+  .shop-search input{
+    width:100%;
+  }
+
+  .hero-store{
+    padding:38px 24px;
+    min-height:300px;
+  }
+
+  .hero-content h2{
+    font-size:30px;
+  }
+
+  .products-grid,
+  #products{
+    grid-template-columns:repeat(2,1fr) !important;
+  }
+
+  .shop-footer{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+}
+
+@media(max-width:520px){
+  .products-grid,
+  #products{
+    grid-template-columns:1fr !important;
+  }
+
+  .category-icon{
+    width:76px;
+    height:76px;
+    font-size:28px;
+  }
+
+  .categories-row{
+    gap:24px;
+  }
+}
 }
