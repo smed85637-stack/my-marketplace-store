@@ -1,5 +1,4 @@
-const API = '/.netlify/functions';
-const $ = (id) => document.getElementById(id);
+const API = '/api';const $ = (id) => document.getElementById(id);
 
 function esc(s){
   return String(s||'').replace(/[&<>"']/g,m=>({
