@@ -22,8 +22,14 @@ exports.handler = async (event) => {
       const token = crypto.randomBytes(18).toString('hex');
       const { data, error } = await sb
         .from('sellers')
-        .insert({ store_name, owner_name, phone, city, token })
-        .select()
+.insert({ 
+  store_name, 
+  owner_name, 
+  phone, 
+  city, 
+  token,
+  status: 'active'
+})        .select()
         .single();
 
       if (error) return json(500, { error: error.message });
