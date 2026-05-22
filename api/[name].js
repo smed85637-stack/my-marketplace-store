@@ -9,12 +9,12 @@ module.exports = async (req, res) => {
 
     const fn = require(`../${name}`);
 
-    const event = {
-      httpMethod: req.method,
-      headers: req.headers || {},
-      queryStringParameters: req.query || {},
-      body: req.body ? JSON.stringify(req.body) : ''
-    };
+   const event = {
+  httpMethod: req.method,
+  headers: req.headers || {},
+  queryStringParameters: req.query || {},
+  body: typeof req.body === 'string' ? req.body : (req.body ? JSON.stringify(req.body) : '')
+};
 
     const result = await fn.handler(event);
 
