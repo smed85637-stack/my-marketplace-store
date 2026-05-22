@@ -373,7 +373,7 @@ async function loadSellerOrders(){
         <td>${money(o.total_amount,o.products?.currency)}<br><small>عمولة 2%: ${money(o.commission_amount,o.products?.currency)}</small></td>
         <td><span class="status ${esc(o.status)}">${esc(o.status)}</span></td>
         <td>
-          <button class="btn green" onclick="updateOrder('${o.id}','completed')">مكتمل</button>
+         <button class="btn green" onclick="updateOrder('${o.id}','completed')">تم البيع</button>
           <button class="btn danger" onclick="updateOrder('${o.id}','cancelled')">إلغاء</button>
         </td>
       </tr>
