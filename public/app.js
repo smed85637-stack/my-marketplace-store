@@ -456,9 +456,9 @@ async function loadAdmin(){
                 <td>${esc(s.city||'')}</td>
                 <td><span class="status ${esc(s.status)}">${esc(s.status)}</span></td>
                 <td>
-                  <button class="btn ${s.status==='blocked'?'green':'danger'}" onclick="sellerStatus('${s.id}','${s.status==='blocked'?'active':'blocked'}')">
-                    ${s.status==='blocked'?'تفعيل':'حظر'}
-                  </button>
+                  <button class="btn danger" onclick="sellerStatus('${s.id}','deleted')">
+  حذف
+</button> </button>
                 </td>
               </tr>
             `).join('')||'<tr><td colspan="5">لا يوجد بائعون</td></tr>'}
@@ -515,35 +515,19 @@ async function loadAdmin(){
 
 async function sellerStatus(id,status){
   try{
+    if(status === 'deleted'){
+      if(!confirm('هل تريد حذف هذا البائع نهائياً؟')) return;
+    }
+
     await req('/admin',{
       method:'PUT',
       headers:{'x-admin-token':adminToken()},
       body:JSON.stringify({type:'seller_status',id,status})
     });
+
+    toast(status === 'deleted' ? 'تم حذف البائع' : 'تم تحديث حالة البائع');
     loadAdmin();
-  }catch(e){
-    toast(e.message);
-  }
-}
 
-async function productStatus(id,status){
-  try{
-    if(status === 'deleted'){
-      if(!confirm('هل تريد حذف هذا المنتج من المتجر؟')) return;
-    }
-
-    if(status === 'blocked'){
-      if(!confirm('هل تريد حظر هذا المنتج من المتجر؟')) return;
-    }
-
-    await req('/admin',{
-      method:'PUT',
-      headers:{'x-admin-token':adminToken()},
-      body:JSON.stringify({type:'product_status',id,status})
-    });
-
-    toast('تم تحديث المنتج');
-    loadAdmin();
   }catch(e){
     toast(e.message);
   }
