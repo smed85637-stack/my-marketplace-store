@@ -101,7 +101,7 @@ function renderProducts(){
     </article>
   `).join('');
 }
-}
+
 function filterCategory(category){
   selectedCategory = category;
   renderProducts();
