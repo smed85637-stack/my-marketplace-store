@@ -48,6 +48,14 @@ function productMainImage(p){
 // الصفحة الرئيسية
 let productsCache = [];
 let selectedCategory = 'الكل';
+function normalizeCategoryName(v){
+  return String(v || '')
+    .trim()
+    .replace(/\s+/g, ' ')
+    .replace(/[إأآا]/g, 'ا')
+    .replace(/ؤ/g, 'و')
+    .replace(/ئ/g, 'ي');
+}
 async function loadProducts(){
   try{
     $('productsGrid').innerHTML = `<div class="empty">جاري تحميل المنتجات...</div>`;
@@ -75,9 +83,11 @@ function renderProducts(){
       .includes(q)
   );
 
-  if(selectedCategory !== 'الكل'){
-    items = items.filter(p => (p.category || 'أخرى') === selectedCategory);
-  }
+if(selectedCategory !== 'الكل'){
+  items = items.filter(p =>
+    normalizeCategoryName(p.category || 'أخرى') === normalizeCategoryName(selectedCategory)
+  );
+}
 
   if(!items.length){
     $('productsGrid').innerHTML = `<div class="empty">لا توجد منتجات الآن.</div>`;
