@@ -116,6 +116,7 @@ function filterCategory(category){
   selectedCategory = category;
   renderProducts();
 }
+
 function contactSeller(id){
   const p = productsCache.find(x=>x.id===id);
   const phone = String(p?.sellers?.phone||'').replace(/[^\d]/g,'');
@@ -125,11 +126,49 @@ function contactSeller(id){
 }
 
 function openOrder(id){
-  const p = productsCache.find(x=>x.id===id);
-  if(!p) return;
-  $('orderProductId').value = p.id;
-  $('orderProductName').textContent = p.name + ' - ' + money(p.price,p.currency);
-  $('orderModal').classList.add('open');
+  const p = productsCache.find(x => String(x.id) === String(id));
+
+  if(!p){
+    return toast("لم يتم العثور على المنتج");
+  }
+
+  const buyerName = prompt("اكتب اسمك:");
+  if(!buyerName) return;
+
+  const buyerPhone = prompt("اكتب رقم هاتفك:");
+  if(!buyerPhone) return;
+
+  const buyerAddress = prompt("اكتب عنوان التوصيل:");
+  if(!buyerAddress) return;
+
+  const sellerPhone = String(
+    p?.sellers?.phone ||
+    p?.sellers?.whatsapp ||
+    p?.seller_phone ||
+    p?.phone ||
+    ""
+  ).replace(/\D/g, "");
+
+  const productName = p.name || "منتج";
+  const priceText = money(p.price, p.currency);
+
+  const text =
+    "طلب منتج جديد\n\n" +
+    "المنتج: " + productName + "\n" +
+    "السعر: " + priceText + "\n\n" +
+    "اسم الزبون: " + buyerName + "\n" +
+    "رقم الزبون: " + buyerPhone + "\n" +
+    "عنوان التوصيل: " + buyerAddress;
+
+  if(!sellerPhone){
+    alert("رقم البائع غير موجود، لا يمكن إرسال الطلب عبر واتساب");
+    return;
+  }
+
+  window.open(
+    "https://wa.me/" + sellerPhone + "?text=" + encodeURIComponent(text),
+    "_blank"
+  );
 }
 
 function closeOrder(){
