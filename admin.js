@@ -14,9 +14,10 @@ exports.handler = async (event) => {
 
     if (event.httpMethod === 'GET') {
       const [sellersRes, productsRes, ordersRes] = await Promise.all([
-        sb.from('sellers')
-          .select('*')
-          .order('created_at', { ascending: false }),
+       sb.from('sellers')
+  .select('*')
+  .neq('status', 'deleted')
+  .order('created_at', { ascending: false }),
 
         sb.from('products')
           .select('*, sellers(store_name, phone)')
@@ -61,19 +62,37 @@ exports.handler = async (event) => {
     if (event.httpMethod === 'PUT') {
       const body = readBody(event);
 
-      if (body.type === 'seller_status') {
-        const status = body.status === 'blocked' ? 'blocked' : 'active';
+    if (body.type === 'seller_status') {
+  if (body.status === 'deleted') {
+    const { error: productsError } = await sb.from('products')
+      .update({ status: 'deleted' })
+      .eq('seller_id', body.id);
 
-        const { data, error } = await sb.from('sellers')
-          .update({ status })
-          .eq('id', body.id)
-          .select()
-          .single();
+    if (productsError) return json(500, { error: productsError.message });
 
-        if (error) return json(500, { error: error.message });
+    const { data, error } = await sb.from('sellers')
+      .update({ status: 'deleted' })
+      .eq('id', body.id)
+      .select()
+      .single();
 
-        return json(200, { seller: data });
-      }
+    if (error) return json(500, { error: error.message });
+
+    return json(200, { seller: data });
+  }
+
+  const status = body.status === 'blocked' ? 'blocked' : 'active';
+
+  const { data, error } = await sb.from('sellers')
+    .update({ status })
+    .eq('id', body.id)
+    .select()
+    .single();
+
+  if (error) return json(500, { error: error.message });
+
+  return json(200, { seller: data });
+}
 
       if (body.type === 'product_status') {
         const allowed = ['active', 'hidden', 'blocked', 'deleted'];
