@@ -49,7 +49,27 @@
       <div class="field"><label>اسم المنتج</label><input id="productName" required></div>
       <div class="field"><label>السعر</label><input id="productPrice" type="number" min="0" step="0.01" required></div>
       <div class="field"><label>العملة</label><input id="productCurrency" value="MRU"></div>
-      <div class="field"><label>التصنيف</label><input id="productCategory"></div>
+      <div class="field">
+  <label>القسم</label>
+  <select id="productCategory" required>
+    <option value="إلكترونيات">إلكترونيات</option>
+    <option value="هواتف وإكسسوارات">هواتف وإكسسوارات</option>
+    <option value="أجهزة منزلية">أجهزة منزلية</option>
+    <option value="أدوات رياضية">أدوات رياضية</option>
+    <option value="مستحضرات تجميل">مستحضرات تجميل</option>
+    <option value="أثاث وديكور">أثاث وديكور</option>
+    <option value="ملابس">ملابس</option>
+    <option value="ملابس تقليدية">ملابس تقليدية</option>
+    <option value="أحذية">أحذية</option>
+    <option value="ساعات">ساعات</option>
+    <option value="ألعاب أطفال">ألعاب أطفال</option>
+    <option value="مواد غذائية">مواد غذائية</option>
+    <option value="كتب وقرطاسية">كتب وقرطاسية</option>
+    <option value="سيارات وإكسسوارات">سيارات وإكسسوارات</option>
+    <option value="عطور">عطور</option>
+    <option value="أخرى">أخرى</option>
+  </select>
+</div>
 <div class="field full">
   <label>صور المنتج</label>
   <input 
