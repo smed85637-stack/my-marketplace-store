@@ -630,3 +630,79 @@ window.addEventListener("DOMContentLoaded", () => {
     moveBestSellersAboveCategories();
   }, 1000);
 });
+/* إصلاح قوي لشكل المنتجات الأكثر مبيعاً */
+function makeProductsSmall() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  grid.style.display = "grid";
+  grid.style.gridTemplateColumns = "repeat(4, 1fr)";
+  grid.style.gap = "6px";
+  grid.style.padding = "8px";
+  grid.style.boxSizing = "border-box";
+  grid.style.width = "100%";
+
+  const cards = grid.children;
+
+  Array.from(cards).forEach((card) => {
+    card.style.width = "100%";
+    card.style.padding = "6px";
+    card.style.borderRadius = "14px";
+    card.style.overflow = "hidden";
+    card.style.boxSizing = "border-box";
+    card.style.minHeight = "0";
+
+    const img = card.querySelector("img");
+    if (img) {
+      img.style.width = "100%";
+      img.style.height = "55px";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "10px";
+      img.style.display = "block";
+      img.style.marginBottom = "6px";
+    }
+
+    const titles = card.querySelectorAll("h3, h4");
+    titles.forEach((title) => {
+      title.style.fontSize = "10px";
+      title.style.lineHeight = "1.3";
+      title.style.height = "26px";
+      title.style.overflow = "hidden";
+      title.style.textAlign = "center";
+      title.style.margin = "4px 0";
+    });
+
+    const paragraphs = card.querySelectorAll("p");
+
+    paragraphs.forEach((p, index) => {
+      p.style.fontSize = "8px";
+      p.style.lineHeight = "1.2";
+      p.style.margin = "3px 0";
+      p.style.textAlign = "center";
+
+      /* نخفي الوصف الطويل ونترك فقط البائع */
+      if (index > 0) {
+        p.style.display = "none";
+      }
+    });
+
+    const buttons = card.querySelectorAll("button");
+    buttons.forEach((btn) => {
+      btn.style.width = "100%";
+      btn.style.height = "25px";
+      btn.style.fontSize = "7px";
+      btn.style.padding = "2px";
+      btn.style.borderRadius = "999px";
+      btn.style.marginTop = "4px";
+      btn.style.lineHeight = "1.1";
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  makeProductsSmall();
+  setTimeout(makeProductsSmall, 500);
+  setTimeout(makeProductsSmall, 1500);
+});
+
+setInterval(makeProductsSmall, 2000);
