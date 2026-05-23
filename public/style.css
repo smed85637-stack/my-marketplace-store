@@ -1233,3 +1233,131 @@ body{
   }
 }
 }
+/* المنتجات الأكثر مبيعاً: 4 منتجات في السطر */
+.best-products-grid,
+#bestProducts,
+#best-selling-products,
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* شكل البطاقة */
+.product-card,
+.product,
+.best-product-card {
+  width: 100%;
+  padding: 10px;
+  border-radius: 18px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-sizing: border-box;
+}
+
+/* صورة المنتج */
+.product-card img,
+.product img,
+.best-product-card img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* اسم المنتج */
+.product-card h3,
+.product h3,
+.best-product-card h3 {
+  font-size: 16px;
+  margin: 10px 0 6px;
+  text-align: center;
+}
+
+/* اسم البائع */
+.product-card .seller,
+.product .seller,
+.best-product-card .seller {
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* السعر */
+.product-card .price,
+.product .price,
+.best-product-card .price {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #b58a2c;
+}
+
+/* الأزرار */
+.product-card button,
+.product button,
+.best-product-card button,
+.product-card .btn,
+.product .btn,
+.best-product-card .btn {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 999px;
+  margin-top: 6px;
+}
+
+/* في الهاتف تبقى 4 في السطر لكن أصغر */
+@media (max-width: 768px) {
+  .best-products-grid,
+  #bestProducts,
+  #best-selling-products,
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .product-card,
+  .product,
+  .best-product-card {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  .product-card img,
+  .product img,
+  .best-product-card img {
+    height: 65px;
+  }
+
+  .product-card h3,
+  .product h3,
+  .best-product-card h3 {
+    font-size: 12px;
+  }
+
+  .product-card .seller,
+  .product .seller,
+  .best-product-card .seller {
+    font-size: 10px;
+  }
+
+  .product-card .price,
+  .product .price,
+  .best-product-card .price {
+    font-size: 13px;
+  }
+
+  .product-card button,
+  .product button,
+  .best-product-card button,
+  .product-card .btn,
+  .product .btn,
+  .best-product-card .btn {
+    font-size: 10px;
+    padding: 6px;
+  }
+}
