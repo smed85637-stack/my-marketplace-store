@@ -105,9 +105,10 @@ if(selectedCategory !== 'الكل'){
         <div class="seller">البائع: ${esc(p.sellers?.store_name||'متجر')}</div>
         <div class="desc">${esc(p.description||'')}</div>
         <div class="price">${money(p.price,p.currency)}</div>
-        <button class="btn primary" onclick="openOrder('${p.id}')">طلب المنتج</button>
-        <button class="btn outline" onclick="contactSeller('${p.id}')">تواصل مع البائع</button>
-      </div>
+       <div class="product-actions">
+  <button class="btn primary" onclick="openOrder('${p.id}')">طلب المنتج</button>
+  <button class="btn outline" onclick="contactSeller('${p.id}')">تواصل</button>
+</div>
     </article>
   `).join('');
 }
