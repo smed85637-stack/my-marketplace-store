@@ -1940,3 +1940,74 @@ setInterval(showProductImagesAgain, 1000);
     font-size: 12px !important;
   }
 }
+/* === FIX: إظهار زر تواصل مع البائع بجانب طلب المنتج === */
+
+/* البطاقة لا تقص الأزرار */
+#productsGrid article.product,
+#productsGrid .product {
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+  padding-bottom: 16px !important;
+}
+
+/* جسم المنتج */
+#productsGrid article.product .body {
+  overflow: visible !important;
+}
+
+/* تصغير المسافات حتى تظهر الأزرار */
+#productsGrid article.product .price {
+  margin: 10px 0 !important;
+}
+
+/* الزران في نفس السطر */
+#productsGrid article.product button,
+#productsGrid article.product .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: calc(50% - 4px) !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 6px 4px !important;
+  margin: 6px 2px 0 !important;
+  border-radius: 999px !important;
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* زر تواصل مع البائع */
+#productsGrid article.product .btn.outline {
+  background: #0b172a !important;
+  color: #fff !important;
+  border: 1px solid #0b172a !important;
+}
+
+/* في الهاتف */
+@media (max-width: 768px) {
+  #productsGrid article.product button,
+  #productsGrid article.product .btn {
+    font-size: 10px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+  }
+
+  #productsGrid article.product .img {
+    height: 120px !important;
+    min-height: 120px !important;
+  }
+
+  #productsGrid article.product h3 {
+    font-size: 16px !important;
+    height: 38px !important;
+  }
+
+  #productsGrid article.product .price {
+    font-size: 22px !important;
+    margin: 8px 0 !important;
+  }
+}
