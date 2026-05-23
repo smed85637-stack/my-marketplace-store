@@ -1361,3 +1361,96 @@ body{
     padding: 6px;
   }
 }
+/* تصغير المنتجات الأكثر مبيعاً وجعل 4 منتجات في السطر */
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 8px !important;
+  padding: 0 10px !important;
+}
+
+/* تصغير كل بطاقة منتج داخل المنتجات الأكثر مبيعاً */
+#productsGrid > * {
+  width: 100% !important;
+  padding: 7px !important;
+  border-radius: 14px !important;
+  box-sizing: border-box !important;
+}
+
+/* تصغير صورة المنتج */
+#productsGrid img {
+  width: 100% !important;
+  height: 58px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+}
+
+/* تصغير اسم المنتج */
+#productsGrid h3,
+#productsGrid h4,
+#productsGrid .product-title {
+  font-size: 11px !important;
+  line-height: 1.3 !important;
+  margin: 6px 0 4px !important;
+  text-align: center !important;
+}
+
+/* تصغير اسم البائع */
+#productsGrid p,
+#productsGrid .seller,
+#productsGrid .product-seller {
+  font-size: 9px !important;
+  line-height: 1.3 !important;
+  margin: 3px 0 !important;
+  text-align: center !important;
+}
+
+/* تصغير السعر */
+#productsGrid .price,
+#productsGrid .product-price {
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  margin: 5px 0 !important;
+  text-align: center !important;
+}
+
+/* تصغير الأزرار */
+#productsGrid button,
+#productsGrid .btn {
+  width: 100% !important;
+  padding: 5px 3px !important;
+  font-size: 9px !important;
+  border-radius: 999px !important;
+  margin-top: 4px !important;
+}
+
+/* تصغير عنوان القسم قليلاً */
+#products-section h2 {
+  font-size: 30px !important;
+  margin-bottom: 22px !important;
+}
+
+/* في الهاتف تبقى 4 منتجات في نفس السطر */
+@media (max-width: 768px) {
+  #productsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    padding: 0 8px !important;
+  }
+
+  #productsGrid img {
+    height: 52px !important;
+  }
+
+  #productsGrid h3,
+  #productsGrid h4,
+  #productsGrid .product-title {
+    font-size: 10px !important;
+  }
+
+  #productsGrid button,
+  #productsGrid .btn {
+    font-size: 8px !important;
+    padding: 5px 2px !important;
+  }
+}
