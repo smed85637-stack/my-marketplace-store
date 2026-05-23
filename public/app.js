@@ -1481,3 +1481,23 @@ window.addEventListener("DOMContentLoaded", () => {
   makeThreeProductsBeautiful();
   setTimeout(makeThreeProductsBeautiful, 600);
 });
+/* === إرجاع المنتجات الأكثر مبيعاً فوق الأقسام المميزة بدون حركة === */
+function moveProductsSectionAboveCategoriesFinal() {
+  const productsSection = document.getElementById("products-section");
+  const categoriesTitle = Array.from(document.querySelectorAll("h1, h2, h3"))
+    .find(el => el.textContent.includes("الأقسام المميزة"));
+
+  if (!productsSection || !categoriesTitle) return;
+
+  const categoriesSection =
+    categoriesTitle.closest("section") ||
+    categoriesTitle.parentElement;
+
+  if (!categoriesSection || !categoriesSection.parentNode) return;
+
+  categoriesSection.parentNode.insertBefore(productsSection, categoriesSection);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  moveProductsSectionAboveCategoriesFinal();
+});
