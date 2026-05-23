@@ -1777,3 +1777,109 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 setInterval(showProductImagesAgain, 1000);
+/* === FINAL PRODUCT CARD IMAGE FIX === */
+
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 14px !important;
+  padding: 14px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (min-width: 900px) {
+  #productsGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+#productsGrid article.product {
+  display: block !important;
+  width: 100% !important;
+  min-height: 360px !important;
+  padding: 10px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  border: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+}
+
+/* هذا هو المهم: إظهار صورة المنتج */
+#productsGrid article.product .img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 135px !important;
+  min-height: 135px !important;
+  overflow: hidden !important;
+  border-radius: 16px !important;
+  margin-bottom: 10px !important;
+  background: #f1f5f9 !important;
+  position: relative !important;
+}
+
+#productsGrid article.product .img img {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+}
+
+/* الشارة فوق الصورة */
+#productsGrid article.product .tag {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  background: #0b172a !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  display: inline-block !important;
+}
+
+/* جسم البطاقة */
+#productsGrid article.product .body {
+  display: block !important;
+  text-align: center !important;
+}
+
+#productsGrid article.product h3 {
+  font-size: 17px !important;
+  line-height: 1.4 !important;
+  height: 48px !important;
+  overflow: hidden !important;
+  margin: 8px 0 !important;
+}
+
+#productsGrid article.product .seller {
+  font-size: 12px !important;
+  color: #6b7280 !important;
+  margin: 6px 0 !important;
+}
+
+/* إخفاء الوصف الطويل فقط */
+#productsGrid article.product .desc {
+  display: none !important;
+}
+
+#productsGrid article.product .price {
+  font-size: 22px !important;
+  font-weight: 900 !important;
+  color: #0b172a !important;
+  margin: 14px 0 !important;
+}
+
+#productsGrid article.product button {
+  width: 100% !important;
+  height: 38px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  margin-top: 8px !important;
+}
