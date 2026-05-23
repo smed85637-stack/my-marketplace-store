@@ -1067,3 +1067,69 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // setInterval(finalProductCardSizeLikeExample, 1000);
+/* === تقليل المسافة بين اسم المنتج والسعر === */
+function removeSpaceBetweenTitleAndPrice() {
+  const cards = document.querySelectorAll("#productsGrid article.product");
+
+  cards.forEach((card) => {
+    const body = card.querySelector(".body");
+    const title = card.querySelector("h3");
+    const seller = card.querySelector(".seller");
+    const desc = card.querySelector(".desc");
+    const price = card.querySelector(".price");
+    const actions = card.querySelector(".product-actions");
+
+    if (body) {
+      body.style.setProperty("display", "flex", "important");
+      body.style.setProperty("flex-direction", "column", "important");
+      body.style.setProperty("align-items", "center", "important");
+      body.style.setProperty("justify-content", "flex-start", "important");
+      body.style.setProperty("gap", "3px", "important");
+      body.style.setProperty("height", "auto", "important");
+      body.style.setProperty("padding", "0", "important");
+      body.style.setProperty("margin", "0", "important");
+    }
+
+    if (title) {
+      title.style.setProperty("margin", "4px 0 2px", "important");
+      title.style.setProperty("height", "24px", "important");
+      title.style.setProperty("line-height", "1.2", "important");
+      title.style.setProperty("font-size", "9px", "important");
+      title.style.setProperty("overflow", "hidden", "important");
+    }
+
+    /* نخفي البائع والوصف حتى لا يتركوا فراغ */
+    if (seller) {
+      seller.style.setProperty("display", "none", "important");
+      seller.style.setProperty("height", "0", "important");
+      seller.style.setProperty("margin", "0", "important");
+      seller.style.setProperty("padding", "0", "important");
+    }
+
+    if (desc) {
+      desc.style.setProperty("display", "none", "important");
+      desc.style.setProperty("height", "0", "important");
+      desc.style.setProperty("margin", "0", "important");
+      desc.style.setProperty("padding", "0", "important");
+    }
+
+    if (price) {
+      price.style.setProperty("margin", "2px 0 4px", "important");
+      price.style.setProperty("font-size", "11px", "important");
+      price.style.setProperty("line-height", "1.1", "important");
+    }
+
+    if (actions) {
+      actions.style.setProperty("margin-top", "2px", "important");
+      actions.style.setProperty("display", "grid", "important");
+      actions.style.setProperty("grid-template-columns", "repeat(2, 1fr)", "important");
+      actions.style.setProperty("gap", "3px", "important");
+      actions.style.setProperty("width", "100%", "important");
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  removeSpaceBetweenTitleAndPrice();
+  setTimeout(removeSpaceBetweenTitleAndPrice, 500);
+});
