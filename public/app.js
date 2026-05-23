@@ -851,3 +851,106 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 setInterval(forceFourProductsInRow, 1000);
+/* === FINAL SHORT 4 PRODUCTS ROW === */
+function forceFourProductsInRow() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  grid.style.setProperty("display", "grid", "important");
+  grid.style.setProperty("grid-template-columns", "repeat(4, minmax(0, 1fr))", "important");
+  grid.style.setProperty("gap", "5px", "important");
+  grid.style.setProperty("padding", "8px", "important");
+  grid.style.setProperty("align-items", "start", "important");
+
+  const cards = grid.querySelectorAll("article.product");
+
+  cards.forEach((card) => {
+    card.style.setProperty("height", "165px", "important");
+    card.style.setProperty("min-height", "165px", "important");
+    card.style.setProperty("max-height", "165px", "important");
+    card.style.setProperty("padding", "4px", "important");
+    card.style.setProperty("border-radius", "12px", "important");
+    card.style.setProperty("overflow", "hidden", "important");
+    card.style.setProperty("box-sizing", "border-box", "important");
+
+    const imgBox = card.querySelector(".img");
+    if (imgBox) {
+      imgBox.style.setProperty("height", "45px", "important");
+      imgBox.style.setProperty("min-height", "45px", "important");
+      imgBox.style.setProperty("margin-bottom", "3px", "important");
+      imgBox.style.setProperty("border-radius", "8px", "important");
+    }
+
+    const img = card.querySelector(".img img");
+    if (img) {
+      img.style.setProperty("width", "100%", "important");
+      img.style.setProperty("height", "100%", "important");
+      img.style.setProperty("object-fit", "cover", "important");
+    }
+
+    const tag = card.querySelector(".tag");
+    if (tag) {
+      tag.style.setProperty("font-size", "7px", "important");
+      tag.style.setProperty("padding", "2px 5px", "important");
+    }
+
+    const title = card.querySelector("h3");
+    if (title) {
+      title.style.setProperty("font-size", "9px", "important");
+      title.style.setProperty("height", "22px", "important");
+      title.style.setProperty("line-height", "1.2", "important");
+      title.style.setProperty("margin", "3px 0", "important");
+      title.style.setProperty("overflow", "hidden", "important");
+    }
+
+    const seller = card.querySelector(".seller");
+    if (seller) {
+      seller.style.setProperty("display", "none", "important");
+    }
+
+    const desc = card.querySelector(".desc");
+    if (desc) {
+      desc.style.setProperty("display", "none", "important");
+    }
+
+    const price = card.querySelector(".price");
+    if (price) {
+      price.style.setProperty("font-size", "11px", "important");
+      price.style.setProperty("line-height", "1.1", "important");
+      price.style.setProperty("margin", "4px 0", "important");
+    }
+
+    const actions = card.querySelector(".product-actions");
+    if (actions) {
+      actions.style.setProperty("display", "grid", "important");
+      actions.style.setProperty("grid-template-columns", "repeat(2, 1fr)", "important");
+      actions.style.setProperty("gap", "3px", "important");
+      actions.style.setProperty("width", "100%", "important");
+      actions.style.setProperty("margin-top", "3px", "important");
+    }
+
+    const buttons = card.querySelectorAll("button, .btn");
+
+    if (buttons[0]) buttons[0].textContent = "طلب";
+    if (buttons[1]) buttons[1].textContent = "تواصل";
+
+    buttons.forEach((btn) => {
+      btn.style.setProperty("width", "100%", "important");
+      btn.style.setProperty("height", "22px", "important");
+      btn.style.setProperty("min-height", "22px", "important");
+      btn.style.setProperty("font-size", "7px", "important");
+      btn.style.setProperty("padding", "1px", "important");
+      btn.style.setProperty("margin", "0", "important");
+      btn.style.setProperty("border-radius", "999px", "important");
+      btn.style.setProperty("line-height", "1", "important");
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  forceFourProductsInRow();
+  setTimeout(forceFourProductsInRow, 500);
+  setTimeout(forceFourProductsInRow, 1500);
+});
+
+setInterval(forceFourProductsInRow, 1000);
