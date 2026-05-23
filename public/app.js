@@ -748,7 +748,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // setInterval(fixLongProductCards, 2000);
 /* === إجبار عرض 4 منتجات في نفس السطر === */
-function forceFourProductsInRow() {
+function //  forceFourProductsInRow() {
   const grid = document.getElementById("productsGrid");
   if (!grid) return;
 
@@ -840,12 +840,12 @@ grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important"); 
 
 window.addEventListener("DOMContentLoaded", () => {
   forceFourProductsInRow();
-  setTimeout(forceFourProductsInRow, 500);
-  setTimeout(forceFourProductsInRow, 1500);
-  setTimeout(forceFourProductsInRow, 3000);
+ // setTimeout(forceFourProductsInRow, 500);
+ // setTimeout(forceFourProductsInRow, 1500);
+ // setTimeout(forceFourProductsInRow, 3000);
 });
 
-setInterval(forceFourProductsInRow, 1000);
+// setInterval(forceFourProductsInRow, 1000);
 /* === FINAL SHORT 4 PRODUCTS ROW === */
 function forceFourProductsInRow() {
   const grid = document.getElementById("productsGrid");
@@ -1126,7 +1126,7 @@ function removeSpaceBetweenTitleAndPrice() {
 
 window.addEventListener("DOMContentLoaded", () => {
   removeSpaceBetweenTitleAndPrice();
-  setTimeout(removeSpaceBetweenTitleAndPrice, 500);
+//  setTimeout(removeSpaceBetweenTitleAndPrice, 500);
 });
 /* === تصغير نهائي للبطاقات وإزالة الفراغ === */
 function compactProductCardsFinal() {
@@ -1239,7 +1239,7 @@ grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important"); 
 
 window.addEventListener("DOMContentLoaded", () => {
   compactProductCardsFinal();
-  setTimeout(compactProductCardsFinal, 800);
+//  setTimeout(compactProductCardsFinal, 800);
 });
 /* === 3 منتجات في كل سطر بشكل جميل وواضح === */
 function makeProductsThreePerRowClear() {
@@ -1361,7 +1361,7 @@ function makeProductsThreePerRowClear() {
 
 window.addEventListener("DOMContentLoaded", () => {
   makeProductsThreePerRowClear();
-  setTimeout(makeProductsThreePerRowClear, 500);
+ // setTimeout(makeProductsThreePerRowClear, 500);
 });
 /* === 3 منتجات في السطر + صورة واضحة وكبيرة === */
 function makeThreeProductsBeautiful() {
