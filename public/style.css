@@ -1454,3 +1454,104 @@ body{
     padding: 5px 2px !important;
   }
 }
+/* === FINAL FIX PRODUCTS GRID === */
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+  padding: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* كل بطاقة منتج */
+#productsGrid > div,
+#productsGrid .product-card {
+  width: 100% !important;
+  height: 210px !important;
+  max-height: 210px !important;
+  min-height: 210px !important;
+  padding: 6px !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+}
+
+/* صورة المنتج */
+#productsGrid img {
+  width: 100% !important;
+  height: 55px !important;
+  object-fit: cover !important;
+  border-radius: 10px !important;
+  display: block !important;
+}
+
+/* اسم المنتج */
+#productsGrid h3,
+#productsGrid h4 {
+  font-size: 10px !important;
+  line-height: 1.3 !important;
+  height: 26px !important;
+  max-height: 26px !important;
+  overflow: hidden !important;
+  margin: 5px 0 !important;
+  text-align: center !important;
+}
+
+/* أخفي الوصف الطويل */
+#productsGrid p:nth-of-type(n+2),
+#productsGrid .description,
+#productsGrid .desc,
+#productsGrid .product-description,
+#productsGrid [class*="desc"],
+#productsGrid [class*="description"] {
+  display: none !important;
+}
+
+/* نص البائع فقط */
+#productsGrid p:first-of-type {
+  display: block !important;
+  font-size: 8px !important;
+  line-height: 1.2 !important;
+  margin: 4px 0 !important;
+  text-align: center !important;
+  color: #6b7280 !important;
+}
+
+/* السعر */
+#productsGrid strong,
+#productsGrid .price,
+#productsGrid .product-price {
+  display: block !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  margin: 6px 0 !important;
+}
+
+/* الأزرار */
+#productsGrid button {
+  width: 100% !important;
+  height: 24px !important;
+  padding: 2px !important;
+  font-size: 7px !important;
+  border-radius: 999px !important;
+  margin-top: 4px !important;
+  line-height: 1.1 !important;
+}
+
+/* الهاتف */
+@media (max-width: 768px) {
+  #productsGrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 5px !important;
+    padding: 6px !important;
+  }
+
+  #productsGrid > div,
+  #productsGrid .product-card {
+    height: 205px !important;
+    max-height: 205px !important;
+    min-height: 205px !important;
+  }
+}
