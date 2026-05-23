@@ -1701,3 +1701,79 @@ body{
 #productsGrid .product-card {
   min-height: 360px !important;
 }
+/* === FINAL FIX: إظهار صور المنتجات وإخفاء الوصف فقط === */
+function showProductImagesAgain() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  const cards = grid.children;
+
+  Array.from(cards).forEach((card) => {
+    card.style.overflow = "hidden";
+
+    /* إظهار الصور */
+    const images = card.querySelectorAll("img");
+    images.forEach((img) => {
+      img.style.display = "block";
+      img.style.visibility = "visible";
+      img.style.opacity = "1";
+      img.style.width = "100%";
+      img.style.height = "120px";
+      img.style.objectFit = "cover";
+      img.style.borderRadius = "14px";
+      img.style.marginBottom = "10px";
+
+      let parent = img.parentElement;
+      while (parent && parent !== card) {
+        parent.style.display = "block";
+        parent.style.visibility = "visible";
+        parent.style.opacity = "1";
+        parent = parent.parentElement;
+      }
+    });
+
+    /* إظهار أي div فيه صورة كخلفية */
+    const imageBoxes = card.querySelectorAll(
+      ".product-image, .product-img, .image, .card-image, [class*='image'], [class*='photo']"
+    );
+
+    imageBoxes.forEach((box) => {
+      box.style.display = "block";
+      box.style.visibility = "visible";
+      box.style.opacity = "1";
+      box.style.width = "100%";
+      box.style.height = "120px";
+      box.style.minHeight = "120px";
+      box.style.backgroundSize = "cover";
+      box.style.backgroundPosition = "center";
+      box.style.borderRadius = "14px";
+      box.style.marginBottom = "10px";
+    });
+
+    /* إخفاء الوصف الطويل فقط */
+    const texts = card.querySelectorAll("p, span");
+
+    texts.forEach((el) => {
+      const text = el.textContent.trim();
+
+      if (
+        text.length > 25 &&
+        !text.includes("البائع") &&
+        !text.includes("MRU") &&
+        !text.includes("طلب") &&
+        !text.includes("تواصل")
+      ) {
+        el.style.display = "none";
+      }
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  showProductImagesAgain();
+  setTimeout(showProductImagesAgain, 500);
+  setTimeout(showProductImagesAgain, 1500);
+  setTimeout(showProductImagesAgain, 3000);
+});
+
+setInterval(showProductImagesAgain, 1000);
