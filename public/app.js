@@ -637,8 +637,7 @@ function makeProductsSmall() {
   if (!grid) return;
 
   grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(4, 1fr)";
-  grid.style.gap = "6px";
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.gap = "6px";
   grid.style.padding = "8px";
   grid.style.boxSizing = "border-box";
   grid.style.width = "100%";
@@ -712,8 +711,7 @@ function fixLongProductCards() {
   if (!grid) return;
 
   grid.style.display = "grid";
-  grid.style.gridTemplateColumns = "repeat(4, 1fr)";
-  grid.style.gap = "6px";
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.gap = "6px";
 
   Array.from(grid.children).forEach((card) => {
     card.style.height = "230px";
@@ -755,8 +753,7 @@ function forceFourProductsInRow() {
   if (!grid) return;
 
   grid.style.setProperty("display", "grid", "important");
-  grid.style.setProperty("grid-template-columns", "repeat(4, minmax(0, 1fr))", "important");
-  grid.style.setProperty("gap", "6px", "important");
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.setProperty("gap", "6px", "important");
   grid.style.setProperty("padding", "8px", "important");
   grid.style.setProperty("width", "100%", "important");
   grid.style.setProperty("box-sizing", "border-box", "important");
@@ -855,8 +852,7 @@ function forceFourProductsInRow() {
   if (!grid) return;
 
   grid.style.setProperty("display", "grid", "important");
-  grid.style.setProperty("grid-template-columns", "repeat(4, minmax(0, 1fr))", "important");
-  grid.style.setProperty("gap", "5px", "important");
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.setProperty("gap", "5px", "important");
   grid.style.setProperty("padding", "8px", "important");
   grid.style.setProperty("align-items", "start", "important");
 
@@ -958,8 +954,7 @@ function finalProductCardSizeLikeExample() {
   if (!grid) return;
 
   grid.style.setProperty("display", "grid", "important");
-  grid.style.setProperty("grid-template-columns", "repeat(4, 1fr)", "important");
-  grid.style.setProperty("gap", "6px", "important");
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.setProperty("gap", "6px", "important");
   grid.style.setProperty("padding", "8px", "important");
   grid.style.setProperty("align-items", "start", "important");
 
@@ -1139,8 +1134,7 @@ function compactProductCardsFinal() {
   if (!grid) return;
 
   grid.style.setProperty("display", "grid", "important");
-  grid.style.setProperty("grid-template-columns", "repeat(4, 1fr)", "important");
-  grid.style.setProperty("gap", "6px", "important");
+grid.style.setProperty("grid-template-columns", "repeat(3, 1fr)", "important");  grid.style.setProperty("gap", "6px", "important");
   grid.style.setProperty("padding", "8px", "important");
 
   const cards = grid.querySelectorAll("article.product");
