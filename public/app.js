@@ -1133,3 +1133,117 @@ window.addEventListener("DOMContentLoaded", () => {
   removeSpaceBetweenTitleAndPrice();
   setTimeout(removeSpaceBetweenTitleAndPrice, 500);
 });
+/* === تصغير نهائي للبطاقات وإزالة الفراغ === */
+function compactProductCardsFinal() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  grid.style.setProperty("display", "grid", "important");
+  grid.style.setProperty("grid-template-columns", "repeat(4, 1fr)", "important");
+  grid.style.setProperty("gap", "6px", "important");
+  grid.style.setProperty("padding", "8px", "important");
+
+  const cards = grid.querySelectorAll("article.product");
+
+  cards.forEach((card) => {
+    card.style.setProperty("height", "150px", "important");
+    card.style.setProperty("min-height", "150px", "important");
+    card.style.setProperty("max-height", "150px", "important");
+    card.style.setProperty("padding", "5px", "important");
+    card.style.setProperty("border-radius", "12px", "important");
+    card.style.setProperty("overflow", "hidden", "important");
+    card.style.setProperty("position", "relative", "important");
+    card.style.setProperty("box-sizing", "border-box", "important");
+
+    const imgBox = card.querySelector(".img");
+    if (imgBox) {
+      imgBox.style.setProperty("height", "45px", "important");
+      imgBox.style.setProperty("min-height", "45px", "important");
+      imgBox.style.setProperty("margin", "0 0 4px 0", "important");
+      imgBox.style.setProperty("border-radius", "8px", "important");
+      imgBox.style.setProperty("overflow", "hidden", "important");
+    }
+
+    const img = card.querySelector(".img img");
+    if (img) {
+      img.style.setProperty("width", "100%", "important");
+      img.style.setProperty("height", "100%", "important");
+      img.style.setProperty("object-fit", "cover", "important");
+    }
+
+    const tag = card.querySelector(".tag");
+    if (tag) {
+      tag.style.setProperty("display", "none", "important");
+    }
+
+    const body = card.querySelector(".body");
+    if (body) {
+      body.style.setProperty("display", "block", "important");
+      body.style.setProperty("padding", "0", "important");
+      body.style.setProperty("margin", "0", "important");
+      body.style.setProperty("height", "auto", "important");
+      body.style.setProperty("text-align", "center", "important");
+    }
+
+    const title = card.querySelector("h3");
+    if (title) {
+      title.style.setProperty("font-size", "9px", "important");
+      title.style.setProperty("height", "22px", "important");
+      title.style.setProperty("line-height", "1.2", "important");
+      title.style.setProperty("margin", "2px 0", "important");
+      title.style.setProperty("overflow", "hidden", "important");
+    }
+
+    const seller = card.querySelector(".seller");
+    if (seller) seller.style.setProperty("display", "none", "important");
+
+    const desc = card.querySelector(".desc");
+    if (desc) desc.style.setProperty("display", "none", "important");
+
+    const price = card.querySelector(".price");
+    if (price) {
+      price.style.setProperty("font-size", "11px", "important");
+      price.style.setProperty("font-weight", "800", "important");
+      price.style.setProperty("line-height", "1.1", "important");
+      price.style.setProperty("margin", "2px 0", "important");
+      price.style.setProperty("position", "absolute", "important");
+      price.style.setProperty("left", "0", "important");
+      price.style.setProperty("right", "0", "important");
+      price.style.setProperty("bottom", "31px", "important");
+      price.style.setProperty("text-align", "center", "important");
+    }
+
+    const actions = card.querySelector(".product-actions");
+    if (actions) {
+      actions.style.setProperty("display", "grid", "important");
+      actions.style.setProperty("grid-template-columns", "repeat(2, 1fr)", "important");
+      actions.style.setProperty("gap", "3px", "important");
+      actions.style.setProperty("position", "absolute", "important");
+      actions.style.setProperty("left", "5px", "important");
+      actions.style.setProperty("right", "5px", "important");
+      actions.style.setProperty("bottom", "5px", "important");
+      actions.style.setProperty("width", "auto", "important");
+      actions.style.setProperty("margin", "0", "important");
+    }
+
+    const buttons = card.querySelectorAll("button, .btn");
+    if (buttons[0]) buttons[0].textContent = "طلب";
+    if (buttons[1]) buttons[1].textContent = "تواصل";
+
+    buttons.forEach((btn) => {
+      btn.style.setProperty("height", "21px", "important");
+      btn.style.setProperty("min-height", "21px", "important");
+      btn.style.setProperty("font-size", "6px", "important");
+      btn.style.setProperty("padding", "1px", "important");
+      btn.style.setProperty("margin", "0", "important");
+      btn.style.setProperty("border-radius", "999px", "important");
+      btn.style.setProperty("line-height", "1", "important");
+      btn.style.setProperty("width", "100%", "important");
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  compactProductCardsFinal();
+  setTimeout(compactProductCardsFinal, 800);
+});
