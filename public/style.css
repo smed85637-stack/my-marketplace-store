@@ -1883,3 +1883,60 @@ setInterval(showProductImagesAgain, 1000);
   font-size: 13px !important;
   margin-top: 8px !important;
 }
+/* === إظهار زر تواصل مع البائع === */
+
+/* إلغاء قص البطاقة */
+#productsGrid article.product {
+  height: auto !important;
+  min-height: 430px !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* جسم البطاقة */
+#productsGrid article.product .body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+}
+
+/* الأزرار كلها تظهر */
+#productsGrid article.product .btn,
+#productsGrid article.product button {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  margin-top: 8px !important;
+  padding: 8px !important;
+  border-radius: 999px !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+}
+
+/* زر تواصل مع البائع */
+#productsGrid article.product .btn.outline {
+  display: block !important;
+  background: #0b172a !important;
+  color: #fff !important;
+  border: 1px solid #0b172a !important;
+}
+
+/* في الهاتف نعطي مساحة كافية للبطاقة */
+@media (max-width: 768px) {
+  #productsGrid article.product {
+    min-height: 450px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #productsGrid article.product .btn,
+  #productsGrid article.product button {
+    height: 38px !important;
+    min-height: 38px !important;
+    font-size: 12px !important;
+  }
+}
