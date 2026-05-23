@@ -1555,3 +1555,103 @@ body{
     min-height: 205px !important;
   }
 }
+/* === FIX FINAL: منتجات مرتبة وصغيرة === */
+
+/* الكمبيوتر: 4 منتجات في السطر */
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 14px !important;
+  padding: 12px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* الهاتف: منتجين في السطر حتى لا تصبح طويلة */
+@media (max-width: 768px) {
+  #productsGrid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important;
+    padding: 12px !important;
+  }
+}
+
+/* بطاقة المنتج */
+#productsGrid > div,
+#productsGrid .product-card {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 260px !important;
+  max-height: none !important;
+  padding: 10px !important;
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  border: 1px solid #e5e7eb !important;
+  box-sizing: border-box !important;
+}
+
+/* صورة المنتج تظهر بشكل واضح */
+#productsGrid img {
+  display: block !important;
+  width: 100% !important;
+  height: 110px !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  margin-bottom: 8px !important;
+}
+
+/* اسم المنتج */
+#productsGrid h3,
+#productsGrid h4 {
+  font-size: 15px !important;
+  line-height: 1.4 !important;
+  height: 42px !important;
+  max-height: 42px !important;
+  overflow: hidden !important;
+  margin: 8px 0 !important;
+  text-align: center !important;
+}
+
+/* إظهار البائع فقط */
+#productsGrid p:first-of-type {
+  display: block !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  margin: 6px 0 !important;
+  text-align: center !important;
+  color: #6b7280 !important;
+}
+
+/* إخفاء الوصف الطويل */
+#productsGrid p:nth-of-type(n+2),
+#productsGrid .description,
+#productsGrid .desc,
+#productsGrid .product-description,
+#productsGrid [class*="desc"],
+#productsGrid [class*="description"] {
+  display: none !important;
+}
+
+/* السعر */
+#productsGrid strong,
+#productsGrid .price,
+#productsGrid .product-price {
+  display: block !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  margin: 12px 0 !important;
+  color: #0b172a !important;
+}
+
+/* الأزرار */
+#productsGrid button {
+  width: 100% !important;
+  height: 36px !important;
+  padding: 6px !important;
+  font-size: 12px !important;
+  border-radius: 999px !important;
+  margin-top: 8px !important;
+  line-height: 1.2 !important;
+}
