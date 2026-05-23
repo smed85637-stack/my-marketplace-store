@@ -2346,3 +2346,95 @@ setInterval(showProductImagesAgain, 1000);
   border-radius: 999px !important;
   line-height: 1.1 !important;
 }
+/* === SHORT 4 PRODUCTS CARDS === */
+
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 5px !important;
+  padding: 8px !important;
+  align-items: start !important;
+}
+
+/* البطاقة قصيرة جدًا */
+#productsGrid article.product {
+  height: 180px !important;
+  min-height: 180px !important;
+  max-height: 180px !important;
+  padding: 4px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+/* الصورة أصغر */
+#productsGrid article.product .img {
+  height: 48px !important;
+  min-height: 48px !important;
+  margin-bottom: 3px !important;
+  border-radius: 8px !important;
+}
+
+#productsGrid article.product .img img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* الشارة */
+#productsGrid article.product .tag {
+  font-size: 7px !important;
+  padding: 2px 5px !important;
+}
+
+/* الاسم */
+#productsGrid article.product h3 {
+  font-size: 9px !important;
+  height: 22px !important;
+  line-height: 1.2 !important;
+  margin: 3px 0 !important;
+  overflow: hidden !important;
+}
+
+/* أخفي البائع حتى تقصر البطاقة */
+#productsGrid article.product .seller {
+  display: none !important;
+}
+
+/* أخفي الوصف */
+#productsGrid article.product .desc {
+  display: none !important;
+}
+
+/* السعر */
+#productsGrid article.product .price {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  margin: 4px 0 !important;
+}
+
+/* الأزرار */
+#productsGrid .product-actions,
+#productsGrid article.product .body {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 3px !important;
+}
+
+#productsGrid article.product .body h3,
+#productsGrid article.product .body .price,
+#productsGrid article.product .body .seller,
+#productsGrid article.product .body .desc {
+  grid-column: 1 / -1 !important;
+}
+
+#productsGrid article.product button,
+#productsGrid article.product .btn {
+  height: 22px !important;
+  min-height: 22px !important;
+  width: 100% !important;
+  font-size: 7px !important;
+  padding: 1px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  line-height: 1 !important;
+}
