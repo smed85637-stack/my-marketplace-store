@@ -865,9 +865,9 @@ function forceFourProductsInRow() {
   const cards = grid.querySelectorAll("article.product");
 
   cards.forEach((card) => {
-    card.style.setProperty("height", "165px", "important");
-    card.style.setProperty("min-height", "165px", "important");
-    card.style.setProperty("max-height", "165px", "important");
+   card.style.setProperty("height", "190px", "important");
+card.style.setProperty("min-height", "190px", "important");
+card.style.setProperty("max-height", "190px", "important");
     card.style.setProperty("padding", "4px", "important");
     card.style.setProperty("border-radius", "12px", "important");
     card.style.setProperty("overflow", "hidden", "important");
@@ -936,9 +936,9 @@ function forceFourProductsInRow() {
 
     buttons.forEach((btn) => {
       btn.style.setProperty("width", "100%", "important");
-      btn.style.setProperty("height", "22px", "important");
-      btn.style.setProperty("min-height", "22px", "important");
-      btn.style.setProperty("font-size", "7px", "important");
+     btn.style.setProperty("height", "20px", "important");
+btn.style.setProperty("min-height", "20px", "important");
+btn.style.setProperty("font-size", "6px", "important");
       btn.style.setProperty("padding", "1px", "important");
       btn.style.setProperty("margin", "0", "important");
       btn.style.setProperty("border-radius", "999px", "important");
