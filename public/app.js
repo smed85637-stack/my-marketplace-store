@@ -594,3 +594,39 @@ async function sellerStatus(id,status){
     toast(e.message);
   }
 }
+/* نقل المنتجات الأكثر مبيعاً فوق الأقسام المميزة */
+function moveBestSellersAboveCategories() {
+  const titles = document.querySelectorAll("h1, h2, h3");
+
+  let bestTitle = null;
+  let categoriesTitle = null;
+
+  titles.forEach((title) => {
+    const text = title.textContent.trim();
+
+    if (text.includes("المنتجات الأكثر مبيع")) {
+      bestTitle = title;
+    }
+
+    if (text.includes("الأقسام المميزة")) {
+      categoriesTitle = title;
+    }
+  });
+
+  if (!bestTitle || !categoriesTitle) return;
+
+  const bestSection = bestTitle.closest("section") || bestTitle.parentElement;
+  const categoriesSection = categoriesTitle.closest("section") || categoriesTitle.parentElement;
+
+  if (!bestSection || !categoriesSection) return;
+
+  categoriesSection.parentNode.insertBefore(bestSection, categoriesSection);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  moveBestSellersAboveCategories();
+
+  setTimeout(() => {
+    moveBestSellersAboveCategories();
+  }, 1000);
+});
