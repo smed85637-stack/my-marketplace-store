@@ -1,161 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>عالم التسوق</title>  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>عالم التسوق</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase: استعمل فقط anon public key وليس secret key -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="app.js"></script>
 </head>
 
-<body onload="loadProducts()">
+<body>
+  <header class="store-header" id="home">
+    <div class="top-bar">
+      <button class="cart-top-btn" id="openCartBtn" type="button">
+        🛒
+        <span id="cartCount">0</span>
+      </button>
 
-  <header class="shop-header">
-    <div class="shop-logo">
-      <div class="logo-icon">🛒</div>
-      <div>
-<h1>عالم التسوق</h1>
-<p>عالم التسوق</p>    </div>
+      <div class="brand">
+        <div class="brand-logo">🛒</div>
+        <div>
+          <h1>عالم التسوق</h1>
+          <p>كل ما تحتاجه في مكان واحد</p>
+        </div>
+      </div>
     </div>
 
-    <nav class="shop-nav">
-      <a href="index.html" class="active">الرئيسية</a>
-      <a href="#products-section">أحدث المنتجات</a>
-      <a href="#categories">أقسام المتجر</a>
-<a href="seller.html">بائع جديد</a>   
+    <nav class="main-nav">
+      <a href="#home" class="active">الرئيسية</a>
+      <a href="#latestProducts">أحدث المنتجات</a>
+      <a href="#featuredCategories">أقسام المتجر</a>
+      <a href="seller.html">بائع جديد</a>
       <a href="admin.html">لوحة المدير</a>
     </nav>
 
-    <div class="shop-search">
-      <input id="searchInput" type="text" placeholder="ابحث">
+    <div class="search-box">
+      <input id="searchInput" type="search" placeholder="ابحث عن منتجات، أقسام أو علامات تجارية..." />
+      <span>🔍</span>
     </div>
   </header>
 
-  <section class="hero-store">
-    <div class="hero-content">
-      <h2>اكتشف عالم التقنية والأسلوب!</h2>
-      <p>تسوق الآن أحدث الإلكترونيات والمنتجات العصرية</p>
-      <a href="#products-section" class="hero-btn">إبدأ التسوق</a>
-    </div>
-  </section>
+  <main>
+    <section class="category-filters">
+      <button class="filter-chip active" data-category="all">الكل</button>
+      <button class="filter-chip" data-category="electronics">إلكترونيات</button>
+      <button class="filter-chip" data-category="clothes">ملابس</button>
+      <button class="filter-chip" data-category="home">منزل</button>
+      <button class="filter-chip" data-category="food">طعام</button>
+      <button class="filter-chip" data-category="cars">سيارات</button>
+      <button class="filter-chip" data-category="other">أخرى</button>
+    </section>
 
-  <section id="categories" class="categories-section">
-    <h2>الأقسام المميزة</h2>
+    <section class="products-section" id="latestProducts">
+      <div class="section-title-row">
+        <div>
+          <span class="gold-line"></span>
+          <h2>أحدث المنتجات</h2>
+        </div>
+        <button id="showAllBtn" type="button">عرض الكل ‹</button>
+      </div>
 
-  <div class="categories-row">
-  <div class="category-item" onclick="filterCategory('الكل')">
-    <div class="category-icon">🛍️</div>
-    <span>الكل</span>
-  </div>
+      <div id="loadingBox" class="loading-box">جاري تحميل المنتجات...</div>
+      <div id="productsGrid" class="products-grid"></div>
+      <div id="emptyBox" class="empty-box hidden">لا توجد منتجات في هذا القسم الآن</div>
+    </section>
 
-  <div class="category-item" onclick="filterCategory('إلكترونيات')">
-    <div class="category-icon">🖥️</div>
-    <span>إلكترونيات</span>
-  </div>
+    <section class="promo-banner">
+      <div>
+        <h2>تجربة تسوق أفضل</h2>
+        <p>منتجات متنوعة • أسعار مناسبة • طلب سريع</p>
+      </div>
+      <button id="startShoppingBtn" type="button">ابدأ التسوق 🛍️</button>
+    </section>
 
-  <div class="category-item" onclick="filterCategory('هواتف وإكسسوارات')">
-    <div class="category-icon">📱</div>
-    <span>هواتف وإكسسوارات</span>
-  </div>
+    <section class="featured-section" id="featuredCategories">
+      <div class="section-title-row">
+        <div>
+          <span class="gold-line"></span>
+          <h2>الأقسام المميزة</h2>
+        </div>
+      </div>
 
-  <div class="category-item" onclick="filterCategory('أجهزة منزلية')">
-    <div class="category-icon">🏠</div>
-    <span>أجهزة منزلية</span>
-  </div>
+      <div class="featured-grid">
+        <button class="featured-card" data-category="electronics">
+          <span>🖥️</span>
+          <strong>إلكترونيات</strong>
+        </button>
 
-  <div class="category-item" onclick="filterCategory('أدوات رياضية')">
-    <div class="category-icon">⚽</div>
-    <span>أدوات رياضية</span>
-  </div>
+        <button class="featured-card" data-category="clothes">
+          <span>👕</span>
+          <strong>ملابس</strong>
+        </button>
 
-  <div class="category-item" onclick="filterCategory('مستحضرات تجميل')">
-    <div class="category-icon">💄</div>
-    <span>مستحضرات تجميل</span>
-  </div>
+        <button class="featured-card" data-category="home">
+          <span>🏠</span>
+          <strong>منزل</strong>
+        </button>
 
-  <div class="category-item" onclick="filterCategory('أثاث وديكور')">
-    <div class="category-icon">🛋️</div>
-    <span>أثاث وديكور</span>
-  </div>
+        <button class="featured-card" data-category="food">
+          <span>🛒</span>
+          <strong>طعام</strong>
+        </button>
 
-  <div class="category-item" onclick="filterCategory('ملابس')">
-    <div class="category-icon">👕</div>
-    <span>ملابس</span>
-  </div>
+        <button class="featured-card" data-category="cars">
+          <span>🚗</span>
+          <strong>سيارات</strong>
+        </button>
 
-  <div class="category-item" onclick="filterCategory('ملابس تقليدية')">
-    <div class="category-icon">👘</div>
-    <span>ملابس تقليدية</span>
-  </div>
+        <button class="featured-card" data-category="other">
+          <span>✨</span>
+          <strong>أخرى</strong>
+        </button>
+      </div>
+    </section>
+  </main>
 
-  <div class="category-item" onclick="filterCategory('أحذية')">
-    <div class="category-icon">👟</div>
-    <span>أحذية</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('ساعات')">
-    <div class="category-icon">⌚</div>
-    <span>ساعات</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('ألعاب أطفال')">
-    <div class="category-icon">🧸</div>
-    <span>ألعاب أطفال</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('مواد غذائية')">
-    <div class="category-icon">🛒</div>
-    <span>مواد غذائية</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('كتب وقرطاسية')">
-    <div class="category-icon">📚</div>
-    <span>كتب وقرطاسية</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('سيارات وإكسسوارات')">
-    <div class="category-icon">🚗</div>
-    <span>سيارات وإكسسوارات</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('عطور')">
-    <div class="category-icon">🌸</div>
-    <span>عطور</span>
-  </div>
-
-  <div class="category-item" onclick="filterCategory('أخرى')">
-    <div class="category-icon">📦</div>
-    <span>أخرى</span>
-  </div>
-</div>
-  </section>
-
-  <section id="products-section" class="products-section">
-    <h2>المنتجات الأكثر مبيعاً</h2>
-
-<div id="productsGrid" class="products-grid">  
-  <!-- المنتجات تظهر هنا من app.js -->
-    </div>
-  </section>
-
-  <footer class="shop-footer">
-    <div>
-      <h3>تواصل معنا</h3>
-      <p>info@store.com</p>
-      <p>+222 00000000</p>
-    </div>
-
-    <div>
-      <h3>خدمة العملاء</h3>
-      <p>تتبع الطلب</p>
-      <p>سياسة المتجر</p>
-    </div>
-
-    <div>
-      <h3>شروط الاستخدام</h3>
-      <p>شروط الاستخدام</p>
-      <p>سياسة الخصوصية</p>
-    </div>
+  <footer class="footer">
+    <h3>عالم التسوق</h3>
+    <p>متجر إلكتروني بسيط وسريع لعرض المنتجات وطلبها بسهولة.</p>
   </footer>
 
-  <script src="app.js?v=120"></script>
+  <!-- السلة -->
+  <div class="overlay hidden" id="overlay"></div>
+
+  <aside class="cart-drawer hidden" id="cartDrawer">
+    <div class="cart-header">
+      <h2>سلة المشتريات</h2>
+      <button id="closeCartBtn" type="button">×</button>
+    </div>
+
+    <div id="cartItems" class="cart-items"></div>
+
+    <div class="cart-total">
+      <span>المجموع:</span>
+      <strong id="cartTotal">0 MRU</strong>
+    </div>
+
+    <form id="orderForm" class="order-form">
+      <input id="customerName" type="text" placeholder="اسم الزبون" required />
+      <input id="customerPhone" type="tel" placeholder="رقم الهاتف" required />
+      <textarea id="customerAddress" placeholder="العنوان أو ملاحظة الطلب"></textarea>
+      <button type="submit">إرسال الطلب</button>
+    </form>
+  </aside>
 </body>
 </html>
