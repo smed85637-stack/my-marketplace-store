@@ -1501,3 +1501,57 @@ function moveProductsSectionAboveCategoriesFinal() {
 window.addEventListener("DOMContentLoaded", () => {
   moveProductsSectionAboveCategoriesFinal();
 });
+/* === إظهار قسم المنتجات وإرجاعه فوق الأقسام === */
+function showProductsSectionFinal() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  const productsSection =
+    document.getElementById("products-section") ||
+    grid.closest("section") ||
+    grid.parentElement;
+
+  if (!productsSection) return;
+
+  /* إظهار القسم */
+  productsSection.style.setProperty("display", "block", "important");
+  productsSection.style.setProperty("visibility", "visible", "important");
+  productsSection.style.setProperty("opacity", "1", "important");
+  productsSection.style.setProperty("height", "auto", "important");
+  productsSection.style.setProperty("overflow", "visible", "important");
+
+  grid.style.setProperty("display", "grid", "important");
+  grid.style.setProperty("visibility", "visible", "important");
+  grid.style.setProperty("opacity", "1", "important");
+
+  /* نقل المنتجات فوق الأقسام المميزة */
+  const categoriesTitle = Array.from(document.querySelectorAll("h1, h2, h3"))
+    .find(el => el.textContent.includes("الأقسام المميزة"));
+
+  if (categoriesTitle) {
+    const categoriesSection =
+      categoriesTitle.closest("section") ||
+      categoriesTitle.parentElement;
+
+    if (
+      categoriesSection &&
+      categoriesSection.parentNode &&
+      productsSection !== categoriesSection
+    ) {
+      categoriesSection.parentNode.insertBefore(productsSection, categoriesSection);
+    }
+  }
+
+  /* إعادة تحميل المنتجات إذا كانت الشبكة فارغة */
+  if (grid.children.length === 0 && typeof loadProducts === "function") {
+    loadProducts();
+  }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  showProductsSectionFinal();
+});
+
+window.addEventListener("load", () => {
+  showProductsSectionFinal();
+});
