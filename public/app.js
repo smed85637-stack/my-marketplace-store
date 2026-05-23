@@ -706,3 +706,47 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 setInterval(makeProductsSmall, 2000);
+/* إخفاء وصف المنتجات الطويل حتى لا تصبح البطاقة طويلة */
+function fixLongProductCards() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  grid.style.display = "grid";
+  grid.style.gridTemplateColumns = "repeat(4, 1fr)";
+  grid.style.gap = "6px";
+
+  Array.from(grid.children).forEach((card) => {
+    card.style.height = "230px";
+    card.style.maxHeight = "230px";
+    card.style.overflow = "hidden";
+
+    const allTextElements = card.querySelectorAll("p, div, span");
+
+    allTextElements.forEach((el) => {
+      const text = el.textContent.trim();
+
+      const hasImage = el.querySelector("img");
+      const hasButton = el.querySelector("button");
+
+      if (hasImage || hasButton) return;
+
+      if (
+        text.length > 25 &&
+        !text.includes("البائع") &&
+        !text.includes("MRU") &&
+        !text.includes("طلب") &&
+        !text.includes("تواصل")
+      ) {
+        el.style.display = "none";
+      }
+    });
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  fixLongProductCards();
+  setTimeout(fixLongProductCards, 500);
+  setTimeout(fixLongProductCards, 1500);
+});
+
+setInterval(fixLongProductCards, 2000);
