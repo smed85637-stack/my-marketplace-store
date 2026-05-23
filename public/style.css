@@ -1655,3 +1655,49 @@ body{
   margin-top: 8px !important;
   line-height: 1.2 !important;
 }
+/* === إرجاع صورة المنتج داخل المنتجات الأكثر مبيعاً === */
+
+/* إظهار أي عنصر صورة داخل البطاقة */
+#productsGrid img,
+#productsGrid .product-image,
+#productsGrid .product-img,
+#productsGrid .image,
+#productsGrid .card-image,
+#productsGrid [class*="image"],
+#productsGrid [class*="photo"],
+#productsGrid [style*="background-image"] {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* تنسيق صورة المنتج */
+#productsGrid img {
+  width: 100% !important;
+  height: 120px !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  margin-bottom: 10px !important;
+}
+
+/* إذا كانت الصورة خلفية داخل div */
+#productsGrid .product-image,
+#productsGrid .product-img,
+#productsGrid .image,
+#productsGrid .card-image,
+#productsGrid [class*="image"],
+#productsGrid [class*="photo"] {
+  width: 100% !important;
+  height: 120px !important;
+  min-height: 120px !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-radius: 14px !important;
+  margin-bottom: 10px !important;
+}
+
+/* نترك البطاقة أطول قليلاً لكي تظهر الصورة */
+#productsGrid > div,
+#productsGrid .product-card {
+  min-height: 360px !important;
+}
