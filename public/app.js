@@ -751,3 +751,103 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 setInterval(fixLongProductCards, 2000);
+/* === إجبار عرض 4 منتجات في نفس السطر === */
+function forceFourProductsInRow() {
+  const grid = document.getElementById("productsGrid");
+  if (!grid) return;
+
+  grid.style.setProperty("display", "grid", "important");
+  grid.style.setProperty("grid-template-columns", "repeat(4, minmax(0, 1fr))", "important");
+  grid.style.setProperty("gap", "6px", "important");
+  grid.style.setProperty("padding", "8px", "important");
+  grid.style.setProperty("width", "100%", "important");
+  grid.style.setProperty("box-sizing", "border-box", "important");
+
+  const cards = grid.querySelectorAll("article.product");
+
+  cards.forEach((card) => {
+    card.style.setProperty("width", "100%", "important");
+    card.style.setProperty("min-width", "0", "important");
+    card.style.setProperty("padding", "5px", "important");
+    card.style.setProperty("border-radius", "14px", "important");
+    card.style.setProperty("overflow", "hidden", "important");
+    card.style.setProperty("min-height", "210px", "important");
+    card.style.setProperty("max-height", "240px", "important");
+
+    const imgBox = card.querySelector(".img");
+    if (imgBox) {
+      imgBox.style.setProperty("height", "60px", "important");
+      imgBox.style.setProperty("min-height", "60px", "important");
+      imgBox.style.setProperty("margin-bottom", "4px", "important");
+      imgBox.style.setProperty("border-radius", "10px", "important");
+    }
+
+    const img = card.querySelector(".img img");
+    if (img) {
+      img.style.setProperty("height", "100%", "important");
+      img.style.setProperty("width", "100%", "important");
+      img.style.setProperty("object-fit", "cover", "important");
+    }
+
+    const title = card.querySelector("h3");
+    if (title) {
+      title.style.setProperty("font-size", "10px", "important");
+      title.style.setProperty("height", "25px", "important");
+      title.style.setProperty("line-height", "1.2", "important");
+      title.style.setProperty("margin", "4px 0", "important");
+      title.style.setProperty("overflow", "hidden", "important");
+    }
+
+    const seller = card.querySelector(".seller");
+    if (seller) {
+      seller.style.setProperty("font-size", "8px", "important");
+      seller.style.setProperty("margin", "3px 0", "important");
+    }
+
+    const desc = card.querySelector(".desc");
+    if (desc) {
+      desc.style.setProperty("display", "none", "important");
+    }
+
+    const price = card.querySelector(".price");
+    if (price) {
+      price.style.setProperty("font-size", "12px", "important");
+      price.style.setProperty("margin", "5px 0", "important");
+    }
+
+    const actions = card.querySelector(".product-actions");
+    if (actions) {
+      actions.style.setProperty("display", "grid", "important");
+      actions.style.setProperty("grid-template-columns", "repeat(2, 1fr)", "important");
+      actions.style.setProperty("gap", "4px", "important");
+      actions.style.setProperty("width", "100%", "important");
+    }
+
+    const buttons = card.querySelectorAll("button, .btn");
+    buttons.forEach((btn) => {
+      btn.style.setProperty("width", "100%", "important");
+      btn.style.setProperty("height", "24px", "important");
+      btn.style.setProperty("min-height", "24px", "important");
+      btn.style.setProperty("font-size", "7px", "important");
+      btn.style.setProperty("padding", "2px", "important");
+      btn.style.setProperty("margin", "0", "important");
+      btn.style.setProperty("border-radius", "999px", "important");
+      btn.style.setProperty("line-height", "1.1", "important");
+    });
+
+    const tag = card.querySelector(".tag");
+    if (tag) {
+      tag.style.setProperty("font-size", "8px", "important");
+      tag.style.setProperty("padding", "3px 6px", "important");
+    }
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  forceFourProductsInRow();
+  setTimeout(forceFourProductsInRow, 500);
+  setTimeout(forceFourProductsInRow, 1500);
+  setTimeout(forceFourProductsInRow, 3000);
+});
+
+setInterval(forceFourProductsInRow, 1000);
