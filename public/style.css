@@ -2217,3 +2217,36 @@ setInterval(showProductImagesAgain, 1000);
   font-size: 19px !important;
   margin: 6px 0 !important;
 }
+/* === تكبير أزرار طلب المنتج وتواصل === */
+
+#productsGrid article.product .body button,
+#productsGrid article.product .body .btn,
+#productsGrid .product-actions button,
+#productsGrid .product-actions .btn {
+  height: 42px !important;
+  min-height: 42px !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  padding: 8px 6px !important;
+  border-radius: 999px !important;
+  width: 100% !important;
+}
+
+/* ترتيب الأزرار بجانب بعض مع حجم أكبر */
+#productsGrid article.product .body,
+#productsGrid .product-actions {
+  gap: 8px !important;
+}
+
+/* في الهاتف */
+@media (max-width: 768px) {
+  #productsGrid article.product .body button,
+  #productsGrid article.product .body .btn,
+  #productsGrid .product-actions button,
+  #productsGrid .product-actions .btn {
+    height: 40px !important;
+    min-height: 40px !important;
+    font-size: 11px !important;
+    padding: 7px 5px !important;
+  }
+}
