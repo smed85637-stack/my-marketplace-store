@@ -2250,3 +2250,99 @@ setInterval(showProductImagesAgain, 1000);
     padding: 7px 5px !important;
   }
 }
+/* === عرض 4 منتجات في نفس السطر === */
+
+#productsGrid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+  padding: 8px !important;
+}
+
+/* بطاقة المنتج صغيرة */
+#productsGrid article.product {
+  padding: 5px !important;
+  border-radius: 14px !important;
+  min-height: 210px !important;
+  max-height: 230px !important;
+  overflow: hidden !important;
+}
+
+/* صورة المنتج صغيرة */
+#productsGrid article.product .img {
+  height: 58px !important;
+  min-height: 58px !important;
+  margin-bottom: 4px !important;
+  border-radius: 10px !important;
+}
+
+#productsGrid article.product .img img {
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* شارة القسم */
+#productsGrid article.product .tag {
+  font-size: 8px !important;
+  padding: 3px 6px !important;
+}
+
+/* اسم المنتج */
+#productsGrid article.product h3 {
+  font-size: 10px !important;
+  height: 26px !important;
+  line-height: 1.2 !important;
+  margin: 4px 0 !important;
+}
+
+/* البائع */
+#productsGrid article.product .seller {
+  font-size: 8px !important;
+  margin: 3px 0 !important;
+}
+
+/* إخفاء الوصف */
+#productsGrid article.product .desc {
+  display: none !important;
+}
+
+/* السعر */
+#productsGrid article.product .price {
+  font-size: 12px !important;
+  margin: 5px 0 !important;
+}
+
+/* الأزرار */
+#productsGrid article.product .body {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 4px !important;
+}
+
+#productsGrid article.product .body h3,
+#productsGrid article.product .body .seller,
+#productsGrid article.product .body .price,
+#productsGrid article.product .body .desc,
+#productsGrid .product-actions {
+  grid-column: 1 / -1 !important;
+}
+
+#productsGrid .product-actions {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 4px !important;
+}
+
+#productsGrid article.product button,
+#productsGrid article.product .btn,
+#productsGrid .product-actions button,
+#productsGrid .product-actions .btn {
+  width: 100% !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  font-size: 7px !important;
+  padding: 2px !important;
+  margin: 0 !important;
+  border-radius: 999px !important;
+  line-height: 1.1 !important;
+}
