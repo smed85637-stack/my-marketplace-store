@@ -748,7 +748,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // setInterval(fixLongProductCards, 2000);
 /* === إجبار عرض 4 منتجات في نفس السطر === */
-function //  forceFourProductsInRow() {
+function  forceFourProductsInRow() {
   const grid = document.getElementById("productsGrid");
   if (!grid) return;
 
