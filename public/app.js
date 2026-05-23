@@ -706,7 +706,6 @@ window.addEventListener("DOMContentLoaded", () => {
   setTimeout(makeProductsSmall, 1500);
 });
 
-setInterval(makeProductsSmall, 2000);
 /* إخفاء وصف المنتجات الطويل حتى لا تصبح البطاقة طويلة */
 function fixLongProductCards() {
   const grid = document.getElementById("productsGrid");
@@ -746,11 +745,10 @@ function fixLongProductCards() {
 
 window.addEventListener("DOMContentLoaded", () => {
   fixLongProductCards();
-  setTimeout(fixLongProductCards, 500);
-  setTimeout(fixLongProductCards, 1500);
+ 
 });
 
-setInterval(fixLongProductCards, 2000);
+// setInterval(fixLongProductCards, 2000);
 /* === إجبار عرض 4 منتجات في نفس السطر === */
 function forceFourProductsInRow() {
   const grid = document.getElementById("productsGrid");
@@ -949,11 +947,11 @@ btn.style.setProperty("font-size", "6px", "important");
 
 window.addEventListener("DOMContentLoaded", () => {
   forceFourProductsInRow();
-  setTimeout(forceFourProductsInRow, 500);
-  setTimeout(forceFourProductsInRow, 1500);
+ // setTimeout(forceFourProductsInRow, 500);
+//  setTimeout(forceFourProductsInRow, 1500);
 });
 
-setInterval(forceFourProductsInRow, 1000);
+// setInterval(forceFourProductsInRow, 1000);
 /* === نفس حجم بطاقات الصورة المرجعية === */
 function finalProductCardSizeLikeExample() {
   const grid = document.getElementById("productsGrid");
@@ -1063,9 +1061,9 @@ function finalProductCardSizeLikeExample() {
 
 window.addEventListener("DOMContentLoaded", () => {
   finalProductCardSizeLikeExample();
-  setTimeout(finalProductCardSizeLikeExample, 500);
-  setTimeout(finalProductCardSizeLikeExample, 1500);
-  setTimeout(finalProductCardSizeLikeExample, 3000);
+ // setTimeout(finalProductCardSizeLikeExample, 500);
+//  setTimeout(finalProductCardSizeLikeExample, 1500);
+ // setTimeout(finalProductCardSizeLikeExample, 3000);
 });
 
-setInterval(finalProductCardSizeLikeExample, 1000);
+// setInterval(finalProductCardSizeLikeExample, 1000);
