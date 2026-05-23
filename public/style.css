@@ -2140,3 +2140,80 @@ setInterval(showProductImagesAgain, 1000);
 #productsGrid article.product .desc {
   display: none !important;
 }
+/* === FIX FINAL BUTTONS SAME LINE === */
+
+/* جسم البطاقة يتحول إلى شبكة */
+#productsGrid article.product .body {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px !important;
+  text-align: center !important;
+}
+
+/* هذه العناصر تأخذ السطر كامل */
+#productsGrid article.product .body h3,
+#productsGrid article.product .body .seller,
+#productsGrid article.product .body .price,
+#productsGrid article.product .body .desc {
+  grid-column: 1 / -1 !important;
+}
+
+/* إخفاء الوصف */
+#productsGrid article.product .body .desc {
+  display: none !important;
+}
+
+/* الزرين جنب بعض */
+#productsGrid article.product .body button,
+#productsGrid article.product .body .btn {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  min-height: 34px !important;
+  margin: 0 !important;
+  padding: 4px 2px !important;
+  font-size: 9px !important;
+  border-radius: 999px !important;
+  line-height: 1.1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* لو وضعت product-actions في app.js */
+#productsGrid .product-actions {
+  grid-column: 1 / -1 !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px !important;
+  width: 100% !important;
+  margin-top: 6px !important;
+}
+
+#productsGrid .product-actions button,
+#productsGrid .product-actions .btn {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+/* تصغير البطاقة قليلاً */
+#productsGrid article.product .img {
+  height: 90px !important;
+  min-height: 90px !important;
+}
+
+#productsGrid article.product h3 {
+  font-size: 15px !important;
+  height: 30px !important;
+  margin: 5px 0 !important;
+}
+
+#productsGrid article.product .seller {
+  font-size: 11px !important;
+  margin: 3px 0 !important;
+}
+
+#productsGrid article.product .price {
+  font-size: 19px !important;
+  margin: 6px 0 !important;
+}
